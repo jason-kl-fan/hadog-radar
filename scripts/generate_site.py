@@ -142,7 +142,7 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
 </head>
 <body>
   <div class=\"breaking-bar\">
-    <span class=\"breaking-label\">HOME</span>
+    <span class=\"breaking-label\">首頁</span>
     <div class=\"ticker\"><span>首頁升級成分類區塊：北加州時間每天早上 8:00 自動更新 AI 熱點新聞，支援日期分頁與站內搜尋</span></div>
   </div>
   <header class=\"hero\">
@@ -166,10 +166,9 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
   <main class=\"container home-main\">
     <section class=\"home-grid\">
       <article class=\"feature-panel\">
-        <div class=\"section-kicker\">Lead Story</div>
+        <div class=\"section-kicker\">今日頭條</div>
         <div class=\"feature-source\">{feature_source}</div>
         <h2>{feature_title}</h2>
-        {feature_original}
         <p>{feature_summary}</p>
         <div class=\"feature-actions\">
           <a class=\"primary-button\" href=\"{feature_url}\" target=\"_blank\" rel=\"noopener\">查看原文</a>
@@ -199,7 +198,7 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
     <section class=\"section-block\">
       <div class=\"section-head\">
         <div>
-          <div class=\"section-kicker\">Sections</div>
+          <div class=\"section-kicker\">分類總覽</div>
           <h2>今日分類速覽</h2>
         </div>
         <a class=\"section-link\" href=\"{latest_href}\">看完整榜單 →</a>
@@ -211,7 +210,7 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
     <section id=\"archive\" class=\"section-block archive-section\">
       <div class=\"section-head\">
         <div>
-          <div class=\"section-kicker\">Archive</div>
+          <div class=\"section-kicker\">新聞存檔</div>
           <h2>日期總覽</h2>
         </div>
         <div class=\"latest-banner\">最新一期：<a href=\"{latest_href}\">{latest_date}</a></div>
@@ -225,7 +224,7 @@ INDEX_TEMPLATE_BOTTOM = """
   <footer class=\"footer\">
     <div class=\"container footer-inner\">
       <div>情報哈狗 AI News 首頁</div>
-      <div>北加州時間每日 08:00 自動更新 · 分類區塊首頁 · 英文原文搭配中文機翻摘要</div>
+      <div>北加州時間每日 08:00 自動更新 · 新聞內容以中文整理呈現 · 支援搜尋與日期分頁</div>
     </div>
   </footer>
   <script src=\"search.js\"></script>
@@ -414,17 +413,13 @@ def render_day_page(day):
     items_html = []
     for i, raw_item in enumerate(day["items"], start=1):
         item = display_item(raw_item)
-        title_original = item['title'] if item['title_zh'] != item['title'] else ''
-        summary_original = item['summary'] if item['summary_zh'] != item['summary'] else ''
         items_html.append(f"""
         <article class=\"headline-card\">
           <div class=\"rank\">{i}</div>
           <div class=\"headline-body\">
             <div class=\"story-source\">{escape(item['source'])}</div>
             <h3>{escape(item['title_zh'])}</h3>
-            {f'<div class="original-text">原文標題：{escape(title_original)}</div>' if title_original else ''}
             <p>{escape(item['summary_zh'])}</p>
-            {f'<div class="original-text">原文摘要：{escape(summary_original)}</div>' if summary_original else ''}
             <a href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">查看原文</a>
           </div>
         </article>
@@ -443,7 +438,7 @@ def render_day_page(day):
 </head>
 <body>
   <div class=\"breaking-bar\">
-    <span class=\"breaking-label\">DAILY</span>
+    <span class=\"breaking-label\">每日</span>
     <div class=\"ticker\"><span>{date} AI 新聞精選 10 則</span></div>
   </div>
   <header class=\"hero hero-small\">
@@ -494,23 +489,19 @@ def render_category_sections(items):
 
         mini_items = []
         for item in group["items"][:3]:
-            title_original = item['title'] if item['title_zh'] != item['title'] else ''
-            summary_original = item['summary'] if item['summary_zh'] != item['summary'] else ''
             mini_items.append(f"""
             <article class=\"mini-item\">
               <div class=\"mini-meta\">{escape(item['source'])}</div>
               <h3><a class=\"mini-link\" href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">{escape(item['title_zh'])}</a></h3>
-              {f'<div class="original-text">原文：{escape(title_original)}</div>' if title_original else ''}
               <p>{escape(item['summary_zh'])}</p>
-              {f'<div class="original-text">{escape(summary_original)}</div>' if summary_original else ''}
             </article>
             """)
 
         sections_html.append(f"""
-        <article id=\"{group['id']}\" class=\"category-panel\">
+            <article id=\"{group['id']}\" class=\"category-panel\">
           <div class=\"category-head\">
             <div>
-              <div class=\"section-kicker\">Category</div>
+              <div class=\"section-kicker\">分類</div>
               <h3>{escape(group['label'])}</h3>
             </div>
             <div class=\"category-count\">{len(group['items'])} 則</div>
@@ -571,7 +562,6 @@ def render_index(days):
     html = INDEX_TEMPLATE_TOP.format(
         feature_source=escape(lead_item['source']),
         feature_title=escape(lead_item.get('title_zh', lead_item['title'])),
-        feature_original=(f'<div class="original-text">原文標題：{escape(lead_item["title"])}</div>' if lead_item.get('title_zh', lead_item['title']) != lead_item['title'] else ''),
         feature_summary=escape(clean_summary(lead_item.get('summary_zh', lead_item['summary']), 220)),
         feature_url=lead_item['url'],
         latest_href=f"days/{latest['date']}.html",
