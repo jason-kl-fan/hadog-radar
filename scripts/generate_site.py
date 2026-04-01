@@ -5,13 +5,17 @@ import re
 import subprocess
 from datetime import datetime
 from pathlib import Path
+import urllib.parse
+import urllib.request
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 DAYS_DIR = ROOT / "days"
+TRANSLATION_CACHE_PATH = ROOT / "translation-cache.json"
 SKILL_SCRIPT = Path("/root/.openclaw/workspace-tg-group-5075638349/skills/openclaw-tavily-search/scripts/tavily_search.py")
 TZ = ZoneInfo("America/Los_Angeles")
+TRANSLATION_CACHE = {}
 
 DEFAULT_ITEMS = [
     {
@@ -152,6 +156,7 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
       </div>
       <div class=\"hero-tags\">
         <span>分類首頁</span>
+        <span>中文快讀</span>
         <span>手機友善</span>
         <span>日期分頁</span>
         <span>站內搜尋</span>
@@ -164,6 +169,7 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
         <div class=\"section-kicker\">Lead Story</div>
         <div class=\"feature-source\">{feature_source}</div>
         <h2>{feature_title}</h2>
+        {feature_original}
         <p>{feature_summary}</p>
         <div class=\"feature-actions\">
           <a class=\"primary-button\" href=\"{feature_url}\" target=\"_blank\" rel=\"noopener\">查看原文</a>
@@ -219,7 +225,7 @@ INDEX_TEMPLATE_BOTTOM = """
   <footer class=\"footer\">
     <div class=\"container footer-inner\">
       <div>情報哈狗 AI News 首頁</div>
-      <div>北加州時間每日 08:00 自動更新 · 分類區塊首頁 · 支援搜尋與日期分頁</div>
+      <div>北加州時間每日 08:00 自動更新 · 分類區塊首頁 · 英文原文搭配中文機翻摘要</div>
     </div>
   </footer>
   <script src=\"search.js\"></script>
@@ -232,6 +238,22 @@ def ensure_dirs():
     DATA_DIR.mkdir(exist_ok=True)
     DAYS_DIR.mkdir(exist_ok=True)
     (ROOT / "scripts").mkdir(exist_ok=True)
+
+
+def load_translation_cache():
+    global TRANSLATION_CACHE
+    if TRANSLATION_CACHE_PATH.exists():
+        try:
+            TRANSLATION_CACHE = json.loads(TRANSLATION_CACHE_PATH.read_text(encoding="utf-8"))
+        except Exception:
+            TRANSLATION_CACHE = {}
+
+
+def save_translation_cache():
+    TRANSLATION_CACHE_PATH.write_text(
+        json.dumps(TRANSLATION_CACHE, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
 
 def today_str():
@@ -296,11 +318,56 @@ def clean_summary(text: str, limit: int = 180) -> str:
     return truncate(cleaned, limit)
 
 
+def contains_cjk(text: str) -> bool:
+    return bool(re.search(r"[\u4e00-\u9fff]", text or ""))
+
+
+def should_translate(text: str) -> bool:
+    text = (text or "").strip()
+    if not text:
+        return False
+    if contains_cjk(text):
+        return False
+    return bool(re.search(r"[A-Za-z]{4,}", text))
+
+
+def translate_text(text: str) -> str:
+    text = (text or "").strip()
+    if not should_translate(text):
+        return text
+
+    if text in TRANSLATION_CACHE:
+        return TRANSLATION_CACHE[text]
+
+    url = (
+        "https://translate.googleapis.com/translate_a/single"
+        f"?client=gtx&sl=auto&tl=zh-TW&dt=t&q={urllib.parse.quote(text)}"
+    )
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+
+    try:
+        with urllib.request.urlopen(req, timeout=20) as response:
+            data = json.loads(response.read().decode("utf-8"))
+        translated = "".join(part[0] for part in data[0] if part and part[0]).strip()
+    except Exception:
+        translated = text
+
+    TRANSLATION_CACHE[text] = translated or text
+    return TRANSLATION_CACHE[text]
+
+
 def display_item(item):
+    title_original = clean_title(item.get("title", "未命名新聞"))
+    summary_original = clean_summary(item.get("summary", ""))
+    title_zh = clean_title(translate_text(title_original))
+    summary_zh = clean_summary(translate_text(summary_original), 200)
+
     return {
-        "title": clean_title(item.get("title", "未命名新聞")),
+        "title": title_original,
+        "title_zh": title_zh,
         "url": item.get("url", "#"),
-        "summary": clean_summary(item.get("summary", "")),
+        "summary": summary_original,
+        "summary_zh": summary_zh,
         "source": normalize_text(item.get("source", "未知來源")) or "未知來源",
     }
 
@@ -347,13 +414,17 @@ def render_day_page(day):
     items_html = []
     for i, raw_item in enumerate(day["items"], start=1):
         item = display_item(raw_item)
+        title_original = item['title'] if item['title_zh'] != item['title'] else ''
+        summary_original = item['summary'] if item['summary_zh'] != item['summary'] else ''
         items_html.append(f"""
         <article class=\"headline-card\">
           <div class=\"rank\">{i}</div>
           <div class=\"headline-body\">
             <div class=\"story-source\">{escape(item['source'])}</div>
-            <h3>{escape(item['title'])}</h3>
-            <p>{escape(item['summary'])}</p>
+            <h3>{escape(item['title_zh'])}</h3>
+            {f'<div class="original-text">原文標題：{escape(title_original)}</div>' if title_original else ''}
+            <p>{escape(item['summary_zh'])}</p>
+            {f'<div class="original-text">原文摘要：{escape(summary_original)}</div>' if summary_original else ''}
             <a href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">查看原文</a>
           </div>
         </article>
@@ -423,11 +494,15 @@ def render_category_sections(items):
 
         mini_items = []
         for item in group["items"][:3]:
+            title_original = item['title'] if item['title_zh'] != item['title'] else ''
+            summary_original = item['summary'] if item['summary_zh'] != item['summary'] else ''
             mini_items.append(f"""
             <article class=\"mini-item\">
               <div class=\"mini-meta\">{escape(item['source'])}</div>
-              <h3><a class=\"mini-link\" href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">{escape(item['title'])}</a></h3>
-              <p>{escape(item['summary'])}</p>
+              <h3><a class=\"mini-link\" href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">{escape(item['title_zh'])}</a></h3>
+              {f'<div class="original-text">原文：{escape(title_original)}</div>' if title_original else ''}
+              <p>{escape(item['summary_zh'])}</p>
+              {f'<div class="original-text">{escape(summary_original)}</div>' if summary_original else ''}
             </article>
             """)
 
@@ -453,7 +528,9 @@ def render_index(days):
     latest_items = [display_item(item) for item in latest.get("items", [])]
     lead_item = latest_items[0] if latest_items else {
         "title": "今日 AI 焦點整理",
+        "title_zh": "今日 AI 焦點整理",
         "summary": "這一期已整理最新 AI 熱點，點進去看完整榜單。",
+        "summary_zh": "這一期已整理最新 AI 熱點，點進去看完整榜單。",
         "source": "情報哈狗 AI News",
         "url": f"days/{latest['date']}.html",
     }
@@ -465,7 +542,7 @@ def render_index(days):
 
     for day in days:
         day_link = f"days/{day['date']}.html"
-        preview = clean_summary(day['items'][0]['summary'], 140) if day['items'] else ''
+        preview = clean_summary(day['items'][0].get('summary_zh') or day['items'][0]['summary'], 140) if day['items'] else ''
         total_items += len(day['items'])
         cards.append(f"""
         <article class=\"archive-card\" data-date=\"{day['date']}\">
@@ -484,15 +561,18 @@ def render_index(days):
             "text": " ".join([
                 day["date"],
                 *(item["title"] for item in day["items"]),
+                *(item.get("title_zh", "") for item in day["items"]),
                 *(item["summary"] for item in day["items"]),
+                *(item.get("summary_zh", "") for item in day["items"]),
                 *(item["source"] for item in day["items"]),
             ])
         })
 
     html = INDEX_TEMPLATE_TOP.format(
         feature_source=escape(lead_item['source']),
-        feature_title=escape(lead_item['title']),
-        feature_summary=escape(clean_summary(lead_item['summary'], 220)),
+        feature_title=escape(lead_item.get('title_zh', lead_item['title'])),
+        feature_original=(f'<div class="original-text">原文標題：{escape(lead_item["title"])}</div>' if lead_item.get('title_zh', lead_item['title']) != lead_item['title'] else ''),
+        feature_summary=escape(clean_summary(lead_item.get('summary_zh', lead_item['summary']), 220)),
         feature_url=lead_item['url'],
         latest_href=f"days/{latest['date']}.html",
         latest_date=latest['date'],
@@ -521,6 +601,7 @@ def main():
     args = parser.parse_args()
 
     ensure_dirs()
+    load_translation_cache()
 
     target_json = DATA_DIR / f"{args.date}.json"
     if args.fetch or not target_json.exists():
@@ -536,6 +617,7 @@ def main():
     for day in days:
         render_day_page(day)
     render_index(days)
+    save_translation_cache()
 
 
 if __name__ == "__main__":

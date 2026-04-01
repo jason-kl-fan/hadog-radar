@@ -237,6 +237,13 @@ a {
   color: var(--muted);
 }
 
+.original-text {
+  margin: 8px 0 0;
+  color: #84a8d3;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
 .feature-panel p,
 .category-desc,
 .mini-item p,
@@ -440,7 +447,7 @@ a {
 }
 
 .mini-item p {
-  margin: 0;
+  margin: 8px 0 0;
   font-size: 15px;
 }
 
