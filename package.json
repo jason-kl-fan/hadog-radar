@@ -1,0 +1,10 @@
+{
+  "name": "ai-news-channel-2026-04-01",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Daily AI news site generated from Tavily search",
+  "scripts": {
+    "build": "python3 scripts/generate_site.py",
+    "update": "python3 scripts/generate_site.py --fetch"
+  }
+}
