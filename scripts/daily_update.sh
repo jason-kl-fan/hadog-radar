@@ -11,5 +11,5 @@ if git diff --cached --quiet; then
   exit 0
 fi
 
-git -c user.name='OpenClaw Bot' -c user.email='openclaw@example.com' commit -m "chore: daily AI news update $(TZ=Europe/Berlin date +%F)"
+git -c user.name='OpenClaw Bot' -c user.email='openclaw@example.com' commit -m "chore: daily AI news update $(TZ=America/Los_Angeles date +%F)"
 git push origin main
