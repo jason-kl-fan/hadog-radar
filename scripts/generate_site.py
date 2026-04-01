@@ -90,35 +90,84 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
 </head>
 <body>
   <div class=\"breaking-bar\">
-    <span class=\"breaking-label\">LIVE</span>
-    <div class=\"ticker\"><span>每日早上 8:00 自動更新 AI 熱點新聞，支援日期頁與站內搜尋</span></div>
+    <span class=\"breaking-label\">HOME</span>
+    <div class=\"ticker\"><span>首頁已上線：每天早上 8:00 自動更新 AI 熱點新聞，支援日期分頁與站內搜尋</span></div>
   </div>
   <header class=\"hero\">
     <div class=\"hero-overlay\"></div>
     <div class=\"hero-content container\">
       <p class=\"channel\">情報哈狗 AI NEWS</p>
-      <h1>每日 AI 新聞台</h1>
-      <p class=\"subtitle\">每日早上 8:00 自動更新・依日期分頁・站內搜尋</p>
+      <h1>AI 新聞首頁</h1>
+      <p class=\"subtitle\">先看最新焦點，再追歷史日期；每天早上 8:00 自動更新</p>
       <div class=\"search-bar\">
         <input id=\"site-search\" type=\"search\" placeholder=\"搜尋日期、標題、摘要、來源...\" />
       </div>
       <div class=\"hero-tags\">
+        <span>首頁摘要</span>
         <span>每日更新</span>
         <span>日期分頁</span>
         <span>站內搜尋</span>
-        <span>Tavily Search</span>
       </div>
     </div>
   </header>
-  <main class=\"container archive-layout\">
-    <section>
-      <div class=\"latest-banner\">最新一期：<a href=\"{latest_href}\">{latest_date}</a></div>
+  <main class=\"container home-main\">
+    <section class=\"home-grid\">
+      <article class=\"feature-panel\">
+        <div class=\"section-kicker\">Latest Issue</div>
+        <h2>最新一期：<a href=\"{latest_href}\">{latest_date}</a></h2>
+        <p>{latest_intro}</p>
+        <div class=\"feature-actions\">
+          <a class=\"primary-button\" href=\"{latest_href}\">閱讀今日完整頁</a>
+          <a class=\"secondary-button\" href=\"#archive\">查看歷史日期</a>
+        </div>
+      </article>
+      <aside class=\"stats-panel\">
+        <div class=\"stat-card\">
+          <span class=\"stat-label\">已收錄日期</span>
+          <strong>{days_count}</strong>
+        </div>
+        <div class=\"stat-card\">
+          <span class=\"stat-label\">新聞條目</span>
+          <strong>{items_count}</strong>
+        </div>
+        <div class=\"stat-card\">
+          <span class=\"stat-label\">更新時間</span>
+          <strong>08:00</strong>
+        </div>
+      </aside>
+    </section>
+
+    <section class=\"section-block\">
+      <div class=\"section-head\">
+        <div>
+          <div class=\"section-kicker\">Top Stories</div>
+          <h2>今日焦點</h2>
+        </div>
+        <a class=\"section-link\" href=\"{latest_href}\">看完整榜單 →</a>
+      </div>
+      <div class=\"top-stories\">{featured_cards}</div>
+    </section>
+
+    <section id=\"archive\" class=\"section-block archive-section\">
+      <div class=\"section-head\">
+        <div>
+          <div class=\"section-kicker\">Archive</div>
+          <h2>日期總覽</h2>
+        </div>
+        <div class=\"latest-banner\">最新一期：<a href=\"{latest_href}\">{latest_date}</a></div>
+      </div>
       <div id=\"results\" class=\"archive-list\">"""
 
 INDEX_TEMPLATE_BOTTOM = """
       </div>
     </section>
   </main>
+  <footer class=\"footer\">
+    <div class=\"container footer-inner\">
+      <div>情報哈狗 AI News 首頁</div>
+      <div>每日 08:00 自動更新 · Tavily Search 驅動 · 支援搜尋與日期分頁</div>
+    </div>
+  </footer>
   <script src=\"search.js\"></script>
 </body>
 </html>
@@ -230,9 +279,13 @@ def render_index(days):
     latest = days[0]
     cards = []
     search_index = []
+    featured_cards = []
+    total_items = 0
+
     for day in days:
         day_link = f"days/{day['date']}.html"
         preview = day['items'][0]['summary'] if day['items'] else ''
+        total_items += len(day['items'])
         cards.append(f"""
         <article class=\"archive-card\" data-date=\"{day['date']}\">
           <div>
@@ -255,7 +308,25 @@ def render_index(days):
             ])
         })
 
-    html = INDEX_TEMPLATE_TOP.format(latest_href=f"days/{latest['date']}.html", latest_date=latest['date']) + "\n".join(cards) + INDEX_TEMPLATE_BOTTOM
+    for item in latest["items"][:3]:
+        featured_cards.append(f"""
+        <article class=\"story-card\">
+          <div class=\"story-source\">{escape(item['source'])}</div>
+          <h3>{escape(item['title'])}</h3>
+          <p>{escape(item['summary'])}</p>
+          <a class=\"story-link\" href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">查看原文</a>
+        </article>
+        """)
+
+    latest_intro = escape(latest['items'][0]['summary'] if latest['items'] else '這一期已整理最新 AI 熱點，點進去看完整榜單。')
+    html = INDEX_TEMPLATE_TOP.format(
+        latest_href=f"days/{latest['date']}.html",
+        latest_date=latest['date'],
+        latest_intro=latest_intro,
+        days_count=len(days),
+        items_count=total_items,
+        featured_cards="\n".join(featured_cards),
+    ) + "\n".join(cards) + INDEX_TEMPLATE_BOTTOM
     (ROOT / "index.html").write_text(html, encoding="utf-8")
     (ROOT / "search-index.json").write_text(json.dumps(search_index, ensure_ascii=False, indent=2), encoding="utf-8")
 

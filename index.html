@@ -12,29 +12,95 @@
 </head>
 <body>
   <div class="breaking-bar">
-    <span class="breaking-label">LIVE</span>
-    <div class="ticker"><span>每日早上 8:00 自動更新 AI 熱點新聞，支援日期頁與站內搜尋</span></div>
+    <span class="breaking-label">HOME</span>
+    <div class="ticker"><span>首頁已上線：每天早上 8:00 自動更新 AI 熱點新聞，支援日期分頁與站內搜尋</span></div>
   </div>
   <header class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content container">
       <p class="channel">情報哈狗 AI NEWS</p>
-      <h1>每日 AI 新聞台</h1>
-      <p class="subtitle">每日早上 8:00 自動更新・依日期分頁・站內搜尋</p>
+      <h1>AI 新聞首頁</h1>
+      <p class="subtitle">先看最新焦點，再追歷史日期；每天早上 8:00 自動更新</p>
       <div class="search-bar">
         <input id="site-search" type="search" placeholder="搜尋日期、標題、摘要、來源..." />
       </div>
       <div class="hero-tags">
+        <span>首頁摘要</span>
         <span>每日更新</span>
         <span>日期分頁</span>
         <span>站內搜尋</span>
-        <span>Tavily Search</span>
       </div>
     </div>
   </header>
-  <main class="container archive-layout">
-    <section>
-      <div class="latest-banner">最新一期：<a href="days/2026-04-02.html">2026-04-02</a></div>
+  <main class="container home-main">
+    <section class="home-grid">
+      <article class="feature-panel">
+        <div class="section-kicker">Latest Issue</div>
+        <h2>最新一期：<a href="days/2026-04-02.html">2026-04-02</a></h2>
+        <p>## AI agents created their own religion. ## AI found breast cancers that human radiologists missed. He also said he plans to hand OpenAI off to an AI model as his successor. ## OpenAI wants to be the operating system for</p>
+        <div class="feature-actions">
+          <a class="primary-button" href="days/2026-04-02.html">閱讀今日完整頁</a>
+          <a class="secondary-button" href="#archive">查看歷史日期</a>
+        </div>
+      </article>
+      <aside class="stats-panel">
+        <div class="stat-card">
+          <span class="stat-label">已收錄日期</span>
+          <strong>2</strong>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">新聞條目</span>
+          <strong>18</strong>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">更新時間</span>
+          <strong>08:00</strong>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section-block">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Top Stories</div>
+          <h2>今日焦點</h2>
+        </div>
+        <a class="section-link" href="days/2026-04-02.html">看完整榜單 →</a>
+      </div>
+      <div class="top-stories">
+        <article class="story-card">
+          <div class="story-source">thehumansintheloop.ai</div>
+          <h3>The top 15 AI stories from February 2026 - The Humans in the Loop</h3>
+          <p>## AI agents created their own religion. ## AI found breast cancers that human radiologists missed. He also said he plans to hand OpenAI off to an AI model as his successor. ## OpenAI wants to be the operating system for</p>
+          <a class="story-link" href="https://www.thehumansintheloop.ai/p/the-top-15-ai-stories-from-february" target="_blank" rel="noopener">查看原文</a>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-source">youtube.com</div>
+          <h3>The Daily AI Show Live: April 2, 2026 - YouTube</h3>
+          <p>... AI News of the Day – fast takes on the most important stories and trends • Tool Spotlights &amp; Demos – testing out the latest AI tools so you</p>
+          <a class="story-link" href="https://www.youtube.com/watch?v=tF5JlOi8rtQ" target="_blank" rel="noopener">查看原文</a>
+        </article>
+        
+
+        <article class="story-card">
+          <div class="story-source">youtube.com</div>
+          <h3>Weekly AI News Update February 4 2026 - YouTube</h3>
+          <p>Summary of Key AI News (Jan 28 – Feb 3, 2026) Software Market Correction: Major software giants like Adobe and Salesforce saw stock prices</p>
+          <a class="story-link" href="https://www.youtube.com/watch?v=XzT__b6mKa8" target="_blank" rel="noopener">查看原文</a>
+        </article>
+        </div>
+    </section>
+
+    <section id="archive" class="section-block archive-section">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Archive</div>
+          <h2>日期總覽</h2>
+        </div>
+        <div class="latest-banner">最新一期：<a href="days/2026-04-02.html">2026-04-02</a></div>
+      </div>
       <div id="results" class="archive-list">
         <article class="archive-card" data-date="2026-04-02">
           <div>
@@ -58,6 +124,12 @@
       </div>
     </section>
   </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>情報哈狗 AI News 首頁</div>
+      <div>每日 08:00 自動更新 · Tavily Search 驅動 · 支援搜尋與日期分頁</div>
+    </div>
+  </footer>
   <script src="search.js"></script>
 </body>
 </html>
