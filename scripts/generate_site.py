@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import json
-import os
+import re
 import subprocess
 from datetime import datetime
 from pathlib import Path
@@ -76,6 +76,54 @@ DEFAULT_ITEMS = [
     }
 ]
 
+CATEGORIES = [
+    {
+        "id": "models",
+        "label": "模型與助手",
+        "description": "大模型、AI 助手、代理與平台能力更新",
+        "keywords": [
+            "gpt", "claude", "gemini", "anthropic", "openai", "llm", "model", "assistant",
+            "chatbot", "reasoning", "multimodal", "sora", "agent", "agents", "copilot"
+        ],
+    },
+    {
+        "id": "hardware",
+        "label": "晶片與硬體",
+        "description": "晶片、記憶體、終端裝置、機器人與基礎設施",
+        "keywords": [
+            "chip", "chips", "gpu", "npu", "silicon", "semiconductor", "hardware", "device",
+            "devices", "glasses", "earbuds", "wearable", "memory", "quant", "robot", "robotics"
+        ],
+    },
+    {
+        "id": "products",
+        "label": "產品與應用",
+        "description": "企業導入、工作流、工具、服務與商業落地",
+        "keywords": [
+            "workflow", "customer", "bank", "banking", "tool", "tools", "platform", "startup",
+            "service", "product", "products", "app", "apps", "enterprise", "productivity", "automation"
+        ],
+    },
+    {
+        "id": "research",
+        "label": "研究與教育",
+        "description": "研究突破、學校應用、醫療與知識工作流",
+        "keywords": [
+            "research", "study", "university", "academy", "education", "paper", "medical", "cancer",
+            "science", "scientific", "lab", "labs", "workflow at"
+        ],
+    },
+    {
+        "id": "governance",
+        "label": "監管與產業",
+        "description": "信任、安全、法規、投資與產業變化",
+        "keywords": [
+            "trust", "adoption", "law", "legal", "policy", "regulation", "governance", "court",
+            "lawsuit", "safety", "funding", "raised", "market", "investment", "enterprise value"
+        ],
+    },
+]
+
 INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
 <html lang=\"zh-Hant\">
 <head>
@@ -83,7 +131,7 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
   <title>情報哈狗 AI News</title>
   <meta name=\"description\" content=\"每日 AI 熱點新聞整理，可依日期瀏覽並支援站內搜尋。\" />
-  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"> 
+  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
   <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
   <link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap\" rel=\"stylesheet\">
   <link rel=\"stylesheet\" href=\"styles.css\" />
@@ -91,20 +139,20 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
 <body>
   <div class=\"breaking-bar\">
     <span class=\"breaking-label\">HOME</span>
-    <div class=\"ticker\"><span>首頁已上線：北加州時間每天早上 8:00 自動更新 AI 熱點新聞，支援日期分頁與站內搜尋</span></div>
+    <div class=\"ticker\"><span>首頁升級成分類區塊：北加州時間每天早上 8:00 自動更新 AI 熱點新聞，支援日期分頁與站內搜尋</span></div>
   </div>
   <header class=\"hero\">
     <div class=\"hero-overlay\"></div>
     <div class=\"hero-content container\">
       <p class=\"channel\">情報哈狗 AI NEWS</p>
-      <h1>AI 新聞首頁</h1>
-      <p class=\"subtitle\">先看最新焦點，再追歷史日期；北加州時間每天早上 8:00 自動更新</p>
+      <h1>AI 新聞分類首頁</h1>
+      <p class=\"subtitle\">先看今日頭條，再用分類區塊快速掃描模型、硬體、應用、研究與產業動態</p>
       <div class=\"search-bar\">
         <input id=\"site-search\" type=\"search\" placeholder=\"搜尋日期、標題、摘要、來源...\" />
       </div>
       <div class=\"hero-tags\">
-        <span>首頁摘要</span>
-        <span>每日更新</span>
+        <span>分類首頁</span>
+        <span>手機友善</span>
         <span>日期分頁</span>
         <span>站內搜尋</span>
       </div>
@@ -113,15 +161,20 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
   <main class=\"container home-main\">
     <section class=\"home-grid\">
       <article class=\"feature-panel\">
-        <div class=\"section-kicker\">Latest Issue</div>
-        <h2>最新一期：<a href=\"{latest_href}\">{latest_date}</a></h2>
-        <p>{latest_intro}</p>
+        <div class=\"section-kicker\">Lead Story</div>
+        <div class=\"feature-source\">{feature_source}</div>
+        <h2>{feature_title}</h2>
+        <p>{feature_summary}</p>
         <div class=\"feature-actions\">
-          <a class=\"primary-button\" href=\"{latest_href}\">閱讀今日完整頁</a>
-          <a class=\"secondary-button\" href=\"#archive\">查看歷史日期</a>
+          <a class=\"primary-button\" href=\"{feature_url}\" target=\"_blank\" rel=\"noopener\">查看原文</a>
+          <a class=\"secondary-button\" href=\"{latest_href}\">閱讀 {latest_date} 完整頁</a>
         </div>
       </article>
       <aside class=\"stats-panel\">
+        <div class=\"stat-card\">
+          <span class=\"stat-label\">最新日期</span>
+          <strong>{latest_date}</strong>
+        </div>
         <div class=\"stat-card\">
           <span class=\"stat-label\">已收錄日期</span>
           <strong>{days_count}</strong>
@@ -132,7 +185,7 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
         </div>
         <div class=\"stat-card\">
           <span class=\"stat-label\">更新時間</span>
-          <strong>08:00</strong>
+          <strong>08:00 PT</strong>
         </div>
       </aside>
     </section>
@@ -140,12 +193,13 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
     <section class=\"section-block\">
       <div class=\"section-head\">
         <div>
-          <div class=\"section-kicker\">Top Stories</div>
-          <h2>今日焦點</h2>
+          <div class=\"section-kicker\">Sections</div>
+          <h2>今日分類速覽</h2>
         </div>
         <a class=\"section-link\" href=\"{latest_href}\">看完整榜單 →</a>
       </div>
-      <div class=\"top-stories\">{featured_cards}</div>
+      <div class=\"category-nav\">{category_nav}</div>
+      <div class=\"category-grid\">{category_sections}</div>
     </section>
 
     <section id=\"archive\" class=\"section-block archive-section\">
@@ -165,13 +219,14 @@ INDEX_TEMPLATE_BOTTOM = """
   <footer class=\"footer\">
     <div class=\"container footer-inner\">
       <div>情報哈狗 AI News 首頁</div>
-      <div>北加州時間每日 08:00 自動更新 · Tavily Search 驅動 · 支援搜尋與日期分頁</div>
+      <div>北加州時間每日 08:00 自動更新 · 分類區塊首頁 · 支援搜尋與日期分頁</div>
     </div>
   </footer>
   <script src=\"search.js\"></script>
 </body>
 </html>
 """
+
 
 def ensure_dirs():
     DATA_DIR.mkdir(exist_ok=True)
@@ -191,14 +246,14 @@ def fetch_news(date_str: str):
     results = data.get("results", [])[:10]
     items = []
     for r in results:
-        title = r.get("title", "未命名新聞")
+        title = clean_title(r.get("title", "未命名新聞"))
         url = r.get("url", "#")
-        snippet = (r.get("snippet") or "").strip()
+        snippet = clean_summary(r.get("snippet") or "")
         source = source_from_url(url)
         items.append({
             "title": title,
             "url": url,
-            "summary": snippet[:220] if snippet else "尚無摘要，請點原文查看。",
+            "summary": snippet,
             "source": source
         })
     return items
@@ -206,14 +261,74 @@ def fetch_news(date_str: str):
 
 def source_from_url(url: str) -> str:
     host = url.split("//")[-1].split("/")[0].replace("www.", "")
-    return host
+    return host or "未知來源"
+
+
+def normalize_text(text: str) -> str:
+    text = text or ""
+    text = re.sub(r"!Image\s*\d+\.?", " ", text, flags=re.IGNORECASE)
+    text = re.sub(r"\[([^\]]*)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"https?://\S+", "", text)
+    text = text.replace("##", " ")
+    text = text.replace("**", " ")
+    text = text.replace("__", " ")
+    text = text.replace("•", " · ")
+    text = text.replace("[", " ").replace("]", " ")
+    text = re.sub(r"\s+", " ", text)
+    return text.strip(" -·()[]{}.,\n\t")
+
+
+def truncate(text: str, limit: int) -> str:
+    if len(text) <= limit:
+        return text
+    shortened = text[:limit].rsplit(" ", 1)[0].strip()
+    return (shortened or text[:limit]).rstrip(" ,.;:") + "…"
+
+
+def clean_title(text: str) -> str:
+    return truncate(normalize_text(text) or "未命名新聞", 110)
+
+
+def clean_summary(text: str, limit: int = 180) -> str:
+    cleaned = normalize_text(text)
+    if not cleaned:
+        return "尚無摘要，請點原文查看。"
+    return truncate(cleaned, limit)
+
+
+def display_item(item):
+    return {
+        "title": clean_title(item.get("title", "未命名新聞")),
+        "url": item.get("url", "#"),
+        "summary": clean_summary(item.get("summary", "")),
+        "source": normalize_text(item.get("source", "未知來源")) or "未知來源",
+    }
+
+
+def classify_item(item):
+    blob = " ".join([
+        item.get("title", ""),
+        item.get("summary", ""),
+        item.get("source", ""),
+        item.get("url", ""),
+    ]).lower()
+
+    for category in CATEGORIES:
+        if any(keyword in blob for keyword in category["keywords"]):
+            return category
+
+    return {
+        "id": "other",
+        "label": "其他動態",
+        "description": "未明確落在單一主題、但值得快速掃描的內容",
+    }
 
 
 def save_day(date_str: str, items):
     payload = {
         "date": date_str,
         "generatedAt": datetime.now(TZ).isoformat(),
-        "items": items
+        "items": [display_item(item) for item in items]
     }
     (DATA_DIR / f"{date_str}.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -221,21 +336,26 @@ def save_day(date_str: str, items):
 def load_all_days():
     days = []
     for path in sorted(DATA_DIR.glob("*.json"), reverse=True):
-        days.append(json.loads(path.read_text(encoding="utf-8")))
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        payload["items"] = [display_item(item) for item in payload.get("items", [])]
+        days.append(payload)
     return days
 
 
 def render_day_page(day):
     date = day["date"]
     items_html = []
-    for i, item in enumerate(day["items"], start=1):
+    for i, raw_item in enumerate(day["items"], start=1):
+        item = display_item(raw_item)
         items_html.append(f"""
         <article class=\"headline-card\">
           <div class=\"rank\">{i}</div>
-          <h3>{escape(item['title'])}</h3>
-          <p>{escape(item['summary'])}</p>
-          <div class=\"meta\">來源：{escape(item['source'])}</div>
-          <a href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">查看原文</a>
+          <div class=\"headline-body\">
+            <div class=\"story-source\">{escape(item['source'])}</div>
+            <h3>{escape(item['title'])}</h3>
+            <p>{escape(item['summary'])}</p>
+            <a href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">查看原文</a>
+          </div>
         </article>
         """)
 
@@ -260,7 +380,7 @@ def render_day_page(day):
     <div class=\"hero-content container\">
       <p class=\"channel\">情報哈狗 AI NEWS</p>
       <h1>{date} AI 新聞熱點</h1>
-      <p class=\"subtitle\">每日自動生成專題頁</p>
+      <p class=\"subtitle\">每日自動生成專題頁 · 手機也好讀</p>
       <p><a class=\"back-link\" href=\"../index.html\">← 返回首頁 / 日期總覽</a></p>
     </div>
   </header>
@@ -275,16 +395,77 @@ def render_day_page(day):
     (DAYS_DIR / f"{date}.html").write_text(html, encoding="utf-8")
 
 
+def render_category_sections(items):
+    grouped = {}
+    for category in CATEGORIES:
+        grouped[category["id"]] = {**category, "items": []}
+    grouped["other"] = {
+        "id": "other",
+        "label": "其他動態",
+        "description": "未明確落在單一主題、但值得快速掃描的內容",
+        "items": [],
+    }
+
+    for raw_item in items:
+        item = display_item(raw_item)
+        category = classify_item(item)
+        grouped[category["id"]]["items"].append(item)
+
+    ordered_groups = [grouped[category["id"]] for category in CATEGORIES] + [grouped["other"]]
+    non_empty_groups = [group for group in ordered_groups if group["items"]]
+
+    nav_html = []
+    sections_html = []
+    for group in non_empty_groups:
+        nav_html.append(
+            f'<a class="category-chip" href="#{group["id"]}">{escape(group["label"])}<span>{len(group["items"])} 則</span></a>'
+        )
+
+        mini_items = []
+        for item in group["items"][:3]:
+            mini_items.append(f"""
+            <article class=\"mini-item\">
+              <div class=\"mini-meta\">{escape(item['source'])}</div>
+              <h3><a class=\"mini-link\" href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">{escape(item['title'])}</a></h3>
+              <p>{escape(item['summary'])}</p>
+            </article>
+            """)
+
+        sections_html.append(f"""
+        <article id=\"{group['id']}\" class=\"category-panel\">
+          <div class=\"category-head\">
+            <div>
+              <div class=\"section-kicker\">Category</div>
+              <h3>{escape(group['label'])}</h3>
+            </div>
+            <div class=\"category-count\">{len(group['items'])} 則</div>
+          </div>
+          <p class=\"category-desc\">{escape(group['description'])}</p>
+          <div class=\"mini-list\">{''.join(mini_items)}</div>
+        </article>
+        """)
+
+    return "".join(nav_html), "".join(sections_html), len(non_empty_groups)
+
+
 def render_index(days):
     latest = days[0]
+    latest_items = [display_item(item) for item in latest.get("items", [])]
+    lead_item = latest_items[0] if latest_items else {
+        "title": "今日 AI 焦點整理",
+        "summary": "這一期已整理最新 AI 熱點，點進去看完整榜單。",
+        "source": "情報哈狗 AI News",
+        "url": f"days/{latest['date']}.html",
+    }
+
     cards = []
     search_index = []
-    featured_cards = []
     total_items = 0
+    category_nav, category_sections, populated_categories = render_category_sections(latest_items)
 
     for day in days:
         day_link = f"days/{day['date']}.html"
-        preview = day['items'][0]['summary'] if day['items'] else ''
+        preview = clean_summary(day['items'][0]['summary'], 140) if day['items'] else ''
         total_items += len(day['items'])
         cards.append(f"""
         <article class=\"archive-card\" data-date=\"{day['date']}\">
@@ -308,25 +489,20 @@ def render_index(days):
             ])
         })
 
-    for item in latest["items"][:3]:
-        featured_cards.append(f"""
-        <article class=\"story-card\">
-          <div class=\"story-source\">{escape(item['source'])}</div>
-          <h3>{escape(item['title'])}</h3>
-          <p>{escape(item['summary'])}</p>
-          <a class=\"story-link\" href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">查看原文</a>
-        </article>
-        """)
-
-    latest_intro = escape(latest['items'][0]['summary'] if latest['items'] else '這一期已整理最新 AI 熱點，點進去看完整榜單。')
     html = INDEX_TEMPLATE_TOP.format(
+        feature_source=escape(lead_item['source']),
+        feature_title=escape(lead_item['title']),
+        feature_summary=escape(clean_summary(lead_item['summary'], 220)),
+        feature_url=lead_item['url'],
         latest_href=f"days/{latest['date']}.html",
         latest_date=latest['date'],
-        latest_intro=latest_intro,
         days_count=len(days),
         items_count=total_items,
-        featured_cards="\n".join(featured_cards),
+        category_nav=category_nav,
+        category_sections=category_sections,
+        populated_categories=populated_categories,
     ) + "\n".join(cards) + INDEX_TEMPLATE_BOTTOM
+
     (ROOT / "index.html").write_text(html, encoding="utf-8")
     (ROOT / "search-index.json").write_text(json.dumps(search_index, ensure_ascii=False, indent=2), encoding="utf-8")
 

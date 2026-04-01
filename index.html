@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>情報哈狗 AI News</title>
   <meta name="description" content="每日 AI 熱點新聞整理，可依日期瀏覽並支援站內搜尋。" />
-  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
@@ -13,20 +13,20 @@
 <body>
   <div class="breaking-bar">
     <span class="breaking-label">HOME</span>
-    <div class="ticker"><span>首頁已上線：北加州時間每天早上 8:00 自動更新 AI 熱點新聞，支援日期分頁與站內搜尋</span></div>
+    <div class="ticker"><span>首頁升級成分類區塊：北加州時間每天早上 8:00 自動更新 AI 熱點新聞，支援日期分頁與站內搜尋</span></div>
   </div>
   <header class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content container">
       <p class="channel">情報哈狗 AI NEWS</p>
-      <h1>AI 新聞首頁</h1>
-      <p class="subtitle">先看最新焦點，再追歷史日期；北加州時間每天早上 8:00 自動更新</p>
+      <h1>AI 新聞分類首頁</h1>
+      <p class="subtitle">先看今日頭條，再用分類區塊快速掃描模型、硬體、應用、研究與產業動態</p>
       <div class="search-bar">
         <input id="site-search" type="search" placeholder="搜尋日期、標題、摘要、來源..." />
       </div>
       <div class="hero-tags">
-        <span>首頁摘要</span>
-        <span>每日更新</span>
+        <span>分類首頁</span>
+        <span>手機友善</span>
         <span>日期分頁</span>
         <span>站內搜尋</span>
       </div>
@@ -35,15 +35,20 @@
   <main class="container home-main">
     <section class="home-grid">
       <article class="feature-panel">
-        <div class="section-kicker">Latest Issue</div>
-        <h2>最新一期：<a href="days/2026-04-02.html">2026-04-02</a></h2>
-        <p>## AI agents created their own religion. ## AI found breast cancers that human radiologists missed. He also said he plans to hand OpenAI off to an AI model as his successor. ## OpenAI wants to be the operating system for</p>
+        <div class="section-kicker">Lead Story</div>
+        <div class="feature-source">thehumansintheloop.ai</div>
+        <h2>The top 15 AI stories from February 2026 - The Humans in the Loop</h2>
+        <p>AI agents created their own religion. AI found breast cancers that human radiologists missed. He also said he plans to hand OpenAI off to an AI model as his successor. OpenAI…</p>
         <div class="feature-actions">
-          <a class="primary-button" href="days/2026-04-02.html">閱讀今日完整頁</a>
-          <a class="secondary-button" href="#archive">查看歷史日期</a>
+          <a class="primary-button" href="https://www.thehumansintheloop.ai/p/the-top-15-ai-stories-from-february" target="_blank" rel="noopener">查看原文</a>
+          <a class="secondary-button" href="days/2026-04-02.html">閱讀 2026-04-02 完整頁</a>
         </div>
       </article>
       <aside class="stats-panel">
+        <div class="stat-card">
+          <span class="stat-label">最新日期</span>
+          <strong>2026-04-02</strong>
+        </div>
         <div class="stat-card">
           <span class="stat-label">已收錄日期</span>
           <strong>2</strong>
@@ -54,7 +59,7 @@
         </div>
         <div class="stat-card">
           <span class="stat-label">更新時間</span>
-          <strong>08:00</strong>
+          <strong>08:00 PT</strong>
         </div>
       </aside>
     </section>
@@ -62,33 +67,131 @@
     <section class="section-block">
       <div class="section-head">
         <div>
-          <div class="section-kicker">Top Stories</div>
-          <h2>今日焦點</h2>
+          <div class="section-kicker">Sections</div>
+          <h2>今日分類速覽</h2>
         </div>
         <a class="section-link" href="days/2026-04-02.html">看完整榜單 →</a>
       </div>
-      <div class="top-stories">
-        <article class="story-card">
-          <div class="story-source">thehumansintheloop.ai</div>
-          <h3>The top 15 AI stories from February 2026 - The Humans in the Loop</h3>
-          <p>## AI agents created their own religion. ## AI found breast cancers that human radiologists missed. He also said he plans to hand OpenAI off to an AI model as his successor. ## OpenAI wants to be the operating system for</p>
-          <a class="story-link" href="https://www.thehumansintheloop.ai/p/the-top-15-ai-stories-from-february" target="_blank" rel="noopener">查看原文</a>
+      <div class="category-nav"><a class="category-chip" href="#models">模型與助手<span>1 則</span></a><a class="category-chip" href="#hardware">晶片與硬體<span>1 則</span></a><a class="category-chip" href="#products">產品與應用<span>3 則</span></a><a class="category-chip" href="#governance">監管與產業<span>2 則</span></a><a class="category-chip" href="#other">其他動態<span>3 則</span></a></div>
+      <div class="category-grid">
+        <article id="models" class="category-panel">
+          <div class="category-head">
+            <div>
+              <div class="section-kicker">Category</div>
+              <h3>模型與助手</h3>
+            </div>
+            <div class="category-count">1 則</div>
+          </div>
+          <p class="category-desc">大模型、AI 助手、代理與平台能力更新</p>
+          <div class="mini-list">
+            <article class="mini-item">
+              <div class="mini-meta">thehumansintheloop.ai</div>
+              <h3><a class="mini-link" href="https://www.thehumansintheloop.ai/p/the-top-15-ai-stories-from-february" target="_blank" rel="noopener">The top 15 AI stories from February 2026 - The Humans in the Loop</a></h3>
+              <p>AI agents created their own religion. AI found breast cancers that human radiologists missed. He also said he plans to hand OpenAI off to an AI model as his successor. OpenAI…</p>
+            </article>
+            </div>
         </article>
         
-
-        <article class="story-card">
-          <div class="story-source">youtube.com</div>
-          <h3>The Daily AI Show Live: April 2, 2026 - YouTube</h3>
-          <p>... AI News of the Day – fast takes on the most important stories and trends • Tool Spotlights &amp; Demos – testing out the latest AI tools so you</p>
-          <a class="story-link" href="https://www.youtube.com/watch?v=tF5JlOi8rtQ" target="_blank" rel="noopener">查看原文</a>
+        <article id="hardware" class="category-panel">
+          <div class="category-head">
+            <div>
+              <div class="section-kicker">Category</div>
+              <h3>晶片與硬體</h3>
+            </div>
+            <div class="category-count">1 則</div>
+          </div>
+          <p class="category-desc">晶片、記憶體、終端裝置、機器人與基礎設施</p>
+          <div class="mini-list">
+            <article class="mini-item">
+              <div class="mini-meta">bloomberg.com</div>
+              <h3><a class="mini-link" href="https://www.bloomberg.com/news/newsletters/2026-02-04/software-industry-ai-suffering-widens-evening-briefing-americas" target="_blank" rel="noopener">Software's AI Suffering Expands to Chipmakers - Bloomberg</a></h3>
+              <p>US markets went for a bit of a wild ride on Wednesday, with chipmakers and other tech giants joining battered software makers in falling</p>
+            </article>
+            </div>
         </article>
         
-
-        <article class="story-card">
-          <div class="story-source">youtube.com</div>
-          <h3>Weekly AI News Update February 4 2026 - YouTube</h3>
-          <p>Summary of Key AI News (Jan 28 – Feb 3, 2026) Software Market Correction: Major software giants like Adobe and Salesforce saw stock prices</p>
-          <a class="story-link" href="https://www.youtube.com/watch?v=XzT__b6mKa8" target="_blank" rel="noopener">查看原文</a>
+        <article id="products" class="category-panel">
+          <div class="category-head">
+            <div>
+              <div class="section-kicker">Category</div>
+              <h3>產品與應用</h3>
+            </div>
+            <div class="category-count">3 則</div>
+          </div>
+          <p class="category-desc">企業導入、工作流、工具、服務與商業落地</p>
+          <div class="mini-list">
+            <article class="mini-item">
+              <div class="mini-meta">youtube.com</div>
+              <h3><a class="mini-link" href="https://www.youtube.com/watch?v=tF5JlOi8rtQ" target="_blank" rel="noopener">The Daily AI Show Live: April 2, 2026 - YouTube</a></h3>
+              <p>AI News of the Day – fast takes on the most important stories and trends · Tool Spotlights &amp; Demos – testing out the latest AI tools so you</p>
+            </article>
+            
+            <article class="mini-item">
+              <div class="mini-meta">techstartups.com</div>
+              <h3><a class="mini-link" href="https://techstartups.com/2026/02/04/top-tech-news-today-february-4-2026/" target="_blank" rel="noopener">Top Tech News Today, February 4, 2026 - Tech Startups</a></h3>
+              <p>Big Tech is doubling down on infrastructure as Intel eyes Nvidia's turf, Microsoft and Apple push AI deeper into developer workflows, and cloud</p>
+            </article>
+            
+            <article class="mini-item">
+              <div class="mini-meta">mediapost.com</div>
+              <h3><a class="mini-link" href="https://www.mediapost.com/publications/article/414017/perplexity-meta-and-google-hit-with-privacy-suit.html" target="_blank" rel="noopener">Perplexity, Meta And Google Hit With Privacy Suit - MediaPost</a></h3>
+              <p>Artificial intelligence company Perplexity allegedly shares &quot;complete transcripts&quot; of users' chats with Google and Meta, via analytics tools</p>
+            </article>
+            </div>
+        </article>
+        
+        <article id="governance" class="category-panel">
+          <div class="category-head">
+            <div>
+              <div class="section-kicker">Category</div>
+              <h3>監管與產業</h3>
+            </div>
+            <div class="category-count">2 則</div>
+          </div>
+          <p class="category-desc">信任、安全、法規、投資與產業變化</p>
+          <div class="mini-list">
+            <article class="mini-item">
+              <div class="mini-meta">youtube.com</div>
+              <h3><a class="mini-link" href="https://www.youtube.com/watch?v=XzT__b6mKa8" target="_blank" rel="noopener">Weekly AI News Update February 4 2026 - YouTube</a></h3>
+              <p>Summary of Key AI News (Jan 28 – Feb 3, 2026) Software Market Correction: Major software giants like Adobe and Salesforce saw stock prices</p>
+            </article>
+            
+            <article class="mini-item">
+              <div class="mini-meta">yourcentralvalley.com</div>
+              <h3><a class="mini-link" href="https://www.yourcentralvalley.com/news/business/ap-white-house-urges-congress-to-take-a-light-touch-on-ai-regulations-in-new-legislative-blueprint/" target="_blank" rel="noopener">White House urges Congress to take a light touch on AI regulations</a></h3>
+              <p>WASHINGTON (AP) — The White House said Friday that Congress should “preempt state AI laws” that it views as too burdensome, laying out a</p>
+            </article>
+            </div>
+        </article>
+        
+        <article id="other" class="category-panel">
+          <div class="category-head">
+            <div>
+              <div class="section-kicker">Category</div>
+              <h3>其他動態</h3>
+            </div>
+            <div class="category-count">3 則</div>
+          </div>
+          <p class="category-desc">未明確落在單一主題、但值得快速掃描的內容</p>
+          <div class="mini-list">
+            <article class="mini-item">
+              <div class="mini-meta">linkedin.com</div>
+              <h3><a class="mini-link" href="https://www.linkedin.com/pulse/top-technology-ai-news-updates-from-week-2-2026-4th-jan-shankar-yag8c" target="_blank" rel="noopener">Top Technology &amp; AI News Updates from Week 2 2026 (4th Jan</a></h3>
+              <p>Join now</p>
+            </article>
+            
+            <article class="mini-item">
+              <div class="mini-meta">nationaltoday.com</div>
+              <h3><a class="mini-link" href="https://nationaltoday.com/us/pa/philadelphia/news/2026/04/01/datavault-ai-returns-to-mar-a-lago-for-exclusive-investor-forum-1/" target="_blank" rel="noopener">Datavault AI Returns to Mar-a-Lago for Exclusive Investor Forum</a></h3>
+              <p>Datavault AI CEO Nate Bradley will present at a private investor roundtable on Thursday, April 02, 2026. Bradley previously presented at Mar-a</p>
+            </article>
+            
+            <article class="mini-item">
+              <div class="mini-meta">wf-vision.com</div>
+              <h3><a class="mini-link" href="https://www.wf-vision.com/industry-news/ai-interior-designers-2026-virtual-summit/" target="_blank" rel="noopener">AI for Interior Designers Announces 2nd Annual AI Design Tech</a></h3>
+              <p>The event will also feature an exclusive industry reveal from AI for Interior Designers™, with founder Jenna Gaidusek introducing a new development created specifically for design…</p>
+            </article>
+            </div>
         </article>
         </div>
     </section>
@@ -106,7 +209,7 @@
           <div>
             <div class="archive-date">2026-04-02</div>
             <h2><a href="days/2026-04-02.html">2026-04-02 AI 新聞熱點</a></h2>
-            <p>## AI agents created their own religion. ## AI found breast cancers that human radiologists missed. He also said he plans to hand OpenAI off to an AI model as his successor. ## OpenAI wants to be the operating system for</p>
+            <p>AI agents created their own religion. AI found breast cancers that human radiologists missed. He also said he plans to hand OpenAI off to…</p>
           </div>
           <a class="archive-link" href="days/2026-04-02.html">閱讀當日新聞</a>
         </article>
@@ -116,7 +219,7 @@
           <div>
             <div class="archive-date">2026-04-01</div>
             <h2><a href="days/2026-04-01.html">2026-04-01 AI 新聞熱點</a></h2>
-            <p>[](https://www.jdsupra.com/legalnews/ai-today-in-5-april-1-2026-the-ai-dow-35602/). [Jump to: Latest Updates »](https://www.jdsupra.com/law-news/). [Find Author](https://www.jdsupra.com/legalnews/ai-today-in-5-april-1-20</p>
+            <p>Jump to: Latest Updates ». Find Author</p>
           </div>
           <a class="archive-link" href="days/2026-04-01.html">閱讀當日新聞</a>
         </article>
@@ -127,7 +230,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div>情報哈狗 AI News 首頁</div>
-      <div>北加州時間每日 08:00 自動更新 · Tavily Search 驅動 · 支援搜尋與日期分頁</div>
+      <div>北加州時間每日 08:00 自動更新 · 分類區塊首頁 · 支援搜尋與日期分頁</div>
     </div>
   </footer>
   <script src="search.js"></script>
