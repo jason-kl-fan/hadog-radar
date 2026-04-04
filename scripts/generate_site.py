@@ -28,6 +28,10 @@ SITE_CONFIGS = {
         "ticker_label": "AI 新聞精選 10 則",
         "footer_title": "情報哈狗 AI News 首頁",
         "footer_subtitle": "北加州時間每日 08:00 自動更新 · 新聞內容以中文整理呈現 · 支援搜尋與日期分頁",
+        "theme_class": "theme-ai",
+        "home_label": "AI",
+        "home_href": "index.html",
+        "home_desc": "模型、產品、研究與產業脈動",
     },
     "security": {
         "site_name": "情報哈狗 SECURITY NEWS",
@@ -38,6 +42,10 @@ SITE_CONFIGS = {
         "ticker_label": "網安新聞精選 10 則",
         "footer_title": "情報哈狗 Security News 首頁",
         "footer_subtitle": "北加州時間每日自動更新 · 聚焦企業安全、威脅研究與漏洞事件",
+        "theme_class": "theme-security",
+        "home_label": "網安",
+        "home_href": "security.html",
+        "home_desc": "廠商動態、威脅情報、漏洞事件",
     },
     "startups": {
         "site_name": "情報哈狗 STARTUP NEWS",
@@ -48,6 +56,10 @@ SITE_CONFIGS = {
         "ticker_label": "新創新聞精選 10 則",
         "footer_title": "情報哈狗 Startup News 首頁",
         "footer_subtitle": "北加州時間每日自動更新 · 聚焦新創公司、募資、產品與市場動態",
+        "theme_class": "theme-startups",
+        "home_label": "新創",
+        "home_href": "startups.html",
+        "home_desc": "募資、產品發布、團隊與市場擴張",
     },
 }
 
@@ -252,6 +264,33 @@ CATEGORIES = [
     },
 ]
 
+STARTUP_SUBCATEGORIES = [
+    {
+        "id": "startup-funding",
+        "label": "募資動態",
+        "description": "種子輪、A/B 輪、創投投資與資金消息",
+        "keywords": ["funding", "fundraise", "raised", "raises", "seed", "series a", "series b", "series c", "venture", "vc", "investor", "capital"],
+    },
+    {
+        "id": "startup-product",
+        "label": "產品發布",
+        "description": "新產品、功能更新、上線與發布",
+        "keywords": ["launch", "launches", "launched", "product", "feature", "features", "release", "releases", "debut", "app", "platform"],
+    },
+    {
+        "id": "startup-market",
+        "label": "市場擴張",
+        "description": "合作、併購、商業拓展與國際布局",
+        "keywords": ["acquisition", "acquire", "merger", "partnership", "partners", "expansion", "expands", "market", "customers", "enterprise"],
+    },
+    {
+        "id": "startup-team",
+        "label": "創辦團隊",
+        "description": "創辦人、管理層與公司策略調整",
+        "keywords": ["founder", "founders", "ceo", "executive", "leadership", "team", "hiring", "strategy", "cofounder"],
+    },
+]
+
 SECURITY_SUBCATEGORIES = [
     {
         "id": "security-vendors",
@@ -293,12 +332,13 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{hero_title}｜情報哈狗</title>
+  <meta name="description" content="每日 AI / 網安 / 新創熱點整理，可依日期瀏覽並支援站內搜尋。" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="{theme_class}">
   <div class="breaking-bar">
     <span class="breaking-label">LIVE</span>
     <div class="ticker"><span>情報哈狗每日焦點更新 · AI / 網安 / 新創 三條線同步追蹤</span></div>
@@ -323,94 +363,59 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
   </header>
 
   <main class="container home-main">
-<html lang=\"zh-Hant\">
-<head>
-  <meta charset=\"UTF-8\" />
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
-  <title>情報哈狗 AI News</title>
-  <meta name=\"description\" content=\"每日 AI 熱點新聞整理，可依日期瀏覽並支援站內搜尋。\" />
-  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
-  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
-  <link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap\" rel=\"stylesheet\">
-  <link rel=\"stylesheet\" href=\"styles.css\" />
-</head>
-<body>
-  <div class=\"breaking-bar\">
-    <span class=\"breaking-label\">首頁</span>
-    <div class=\"ticker\"><span>首頁升級成分類區塊：北加州時間每天早上 8:00 自動更新 AI 熱點新聞，支援日期分頁與站內搜尋</span></div>
-  </div>
-  <header class=\"hero\">
-    <div class=\"hero-overlay\"></div>
-    <div class=\"hero-content container\">
-      <p class=\"channel\">情報哈狗 AI NEWS</p>
-      <h1>AI 新聞分類首頁</h1>
-      <p class=\"subtitle\">先看今日頭條，再用分類區塊快速掃描模型、硬體、應用、研究、產業與網路安全動態</p>
-      <div class=\"search-bar\">
-        <input id=\"site-search\" type=\"search\" placeholder=\"搜尋日期、標題、摘要、來源...\" />
-      </div>
-      <div class=\"hero-tags\">
-        <span>分類首頁</span>
-        <span>中文快讀</span>
-        <span>網安新聞</span>
-        <span>手機友善</span>
-        <span>日期分頁</span>
-        <span>站內搜尋</span>
-      </div>
-    </div>
-  </header>
-  <main class=\"container home-main\">
-    <section class=\"home-grid\">
-      <article class=\"feature-panel\">
-        <div class=\"section-kicker\">今日頭條</div>
-        <div class=\"feature-source\">{feature_source}</div>
+    {topic_hub}
+    <section class="home-grid">
+      <article class="feature-panel">
+        <div class="section-kicker">今日頭條</div>
+        <div class="feature-source">{feature_source}</div>
         <h2>{feature_title}</h2>
         <p>{feature_summary}</p>
-        <div class=\"feature-actions\">
-          <a class=\"primary-button\" href=\"{feature_url}\" target=\"_blank\" rel=\"noopener\">查看原文</a>
-          <a class=\"secondary-button\" href=\"{latest_href}\">閱讀 {latest_date} 完整頁</a>
+        <div class="feature-actions">
+          <a class="primary-button" href="{feature_url}" target="_blank" rel="noopener">查看原文</a>
+          <a class="secondary-button" href="{latest_href}">閱讀 {latest_date} 完整頁</a>
         </div>
       </article>
-      <aside class=\"stats-panel\">
-        <div class=\"stat-card\">
-          <span class=\"stat-label\">最新日期</span>
+      <aside class="stats-panel">
+        <div class="stat-card">
+          <span class="stat-label">最新日期</span>
           <strong>{latest_date}</strong>
         </div>
-        <div class=\"stat-card\">
-          <span class=\"stat-label\">已收錄日期</span>
+        <div class="stat-card">
+          <span class="stat-label">已收錄日期</span>
           <strong>{days_count}</strong>
         </div>
-        <div class=\"stat-card\">
-          <span class=\"stat-label\">新聞條目</span>
+        <div class="stat-card">
+          <span class="stat-label">新聞條目</span>
           <strong>{items_count}</strong>
         </div>
-        <div class=\"stat-card\">
-          <span class=\"stat-label\">更新時間</span>
-          <strong>08:00 PT</strong>
+        <div class="stat-card">
+          <span class="stat-label">分類數</span>
+          <strong>{populated_categories}</strong>
         </div>
       </aside>
     </section>
 
-    <section class=\"section-block\">
-      <div class=\"section-head\">
+    <section class="section-block">
+      <div class="section-head">
         <div>
-          <div class=\"section-kicker\">分類總覽</div>
+          <div class="section-kicker">分類總覽</div>
           <h2>今日分類速覽</h2>
         </div>
-        <a class=\"section-link\" href=\"{latest_href}\">看完整榜單 →</a>
+        <a class="section-link" href="{latest_href}">看完整榜單 →</a>
       </div>
-      <div class=\"category-nav\">{category_nav}</div>
-      <div class=\"category-grid\">{category_sections}</div>
+      <div class="category-nav">{category_nav}</div>
+      <div class="category-grid">{category_sections}</div>
     </section>
 
-    <section id=\"archive\" class=\"section-block archive-section\">
-      <div class=\"section-head\">
+    <section id="archive" class="section-block archive-section">
+      <div class="section-head">
         <div>
-          <div class=\"section-kicker\">新聞存檔</div>
+          <div class="section-kicker">新聞存檔</div>
           <h2>日期總覽</h2>
         </div>
-        <div class=\"latest-banner\">最新一期：<a href=\"{latest_href}\">{latest_date}</a></div>
+        <div class="latest-banner">最新一期：<a href="{latest_href}">{latest_date}</a></div>
       </div>
-      <div id=\"results\" class=\"archive-list\">"""
+      <div id="results" class="archive-list">"""
 
 INDEX_TEMPLATE_BOTTOM = """
       </div>
@@ -671,7 +676,7 @@ def classify_item(item):
     }
 
 
-def classify_security_subcategory(item):
+def classify_subcategory(item, subcategories):
     blob = " ".join([
         item.get("title", ""),
         item.get("summary", ""),
@@ -679,11 +684,11 @@ def classify_security_subcategory(item):
         item.get("url", ""),
     ]).lower()
 
-    for subcategory in SECURITY_SUBCATEGORIES:
+    for subcategory in subcategories:
         if any(keyword in blob for keyword in subcategory["keywords"]):
             return subcategory
 
-    return SECURITY_SUBCATEGORIES[0]
+    return subcategories[0]
 
 
 def save_day(date_str: str, items):
@@ -729,7 +734,7 @@ def render_day_page(day, mode: str = "ai"):
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{date}｜AI 每日新聞</title>
+  <title>{date}｜{config['page_title']}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"> 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -746,7 +751,7 @@ def render_day_page(day, mode: str = "ai"):
       <p class="channel">{config['site_name']}</p>
       <h1>{date}｜{config['hero_title']}</h1>
       <p class="subtitle">每日自動生成專題頁 · 手機也好讀</p>
-      <p><a class="back-link" href="../index.html">← 返回首頁 / 日期總覽</a></p>
+      <p><a class="back-link" href="../{config['home_href']}">← 返回{config['home_label']}首頁 / 日期總覽</a></p>
     </div>
   </header>
   <main class="container">
@@ -767,7 +772,8 @@ def render_day_page(day, mode: str = "ai"):
 </body>
 </html>
 """
-    (DAYS_DIR / f"{date}.html").write_text(html, encoding="utf-8")
+    day_filename = f"{date}.html" if mode == "ai" else f"{date}-{mode}.html"
+    (DAYS_DIR / day_filename).write_text(html, encoding="utf-8")
 
 def render_category_sections(items):
     grouped = {}
@@ -795,14 +801,15 @@ def render_category_sections(items):
             f'<a class="category-chip" href="#{group["id"]}">{escape(group["label"])}<span>{len(group["items"])} 則</span></a>'
         )
 
-        if group["id"] == "security":
-            security_groups = {sub["id"]: {**sub, "items": []} for sub in SECURITY_SUBCATEGORIES}
+        if group["id"] in {"security", "products"}:
+            subcategory_defs = SECURITY_SUBCATEGORIES if group["id"] == "security" else STARTUP_SUBCATEGORIES
+            security_groups = {sub["id"]: {**sub, "items": []} for sub in subcategory_defs}
             for item in group["items"]:
-                subcategory = classify_security_subcategory(item)
+                subcategory = classify_subcategory(item, subcategory_defs)
                 security_groups[subcategory["id"]]["items"].append(item)
 
             subcards = []
-            for sub in SECURITY_SUBCATEGORIES:
+            for sub in subcategory_defs:
                 sub_group = security_groups[sub["id"]]
                 if not sub_group["items"]:
                     continue
@@ -868,6 +875,28 @@ def render_category_sections(items):
     return "".join(nav_html), "".join(sections_html), len(non_empty_groups)
 
 
+
+
+def build_topic_hub(current_mode: str, days):
+    cards = []
+    for mode_key in ["ai", "security", "startups"]:
+        config = SITE_CONFIGS[mode_key]
+        active = " is-active" if mode_key == current_mode else ""
+        date_text = days[0]["date"] if days else "尚無資料"
+        item_count = len(days[0].get("items", [])) if days else 0
+        cards.append(f"""
+        <a class="topic-hub-card {config['theme_class']}{active}" href="{config['home_href']}">
+          <div class="topic-hub-top">
+            <span class="topic-hub-label">{escape(config['home_label'])}</span>
+            <span class="topic-hub-count">{item_count} 則</span>
+          </div>
+          <h3>{escape(config['hero_title'])}</h3>
+          <p>{escape(config['home_desc'])}</p>
+          <div class="topic-hub-meta">最新日期：{escape(date_text)}</div>
+        </a>
+        """)
+    return f"<section class=\"topic-hub\">{''.join(cards)}</section>"
+
 def render_index(days, mode: str = "ai"):
     config = SITE_CONFIGS[mode]
     latest = days[0]
@@ -887,14 +916,14 @@ def render_index(days, mode: str = "ai"):
     category_nav, category_sections, populated_categories = render_category_sections(latest_items)
 
     for day in days:
-        day_link = f"days/{day['date']}.html"
+        day_link = f"days/{day['date']}.html" if mode == "ai" else f"days/{day['date']}-{mode}.html"
         preview = clean_summary(day['items'][0].get('summary_zh') or day['items'][0]['summary'], 140) if day['items'] else ''
         total_items += len(day['items'])
         cards.append(f"""
         <article class=\"archive-card\" data-date=\"{day['date']}\">
           <div>
             <div class=\"archive-date\">{day['date']}</div>
-            <h2><a href=\"{day_link}\">{day['date']} AI 新聞熱點</a></h2>
+            <h2><a href=\"{day_link}\">{day['date']}｜{config['hero_title']}</a></h2>
             <p>{escape(preview)}</p>
           </div>
           <a class=\"archive-link\" href=\"{day_link}\">閱讀當日新聞</a>
@@ -914,6 +943,8 @@ def render_index(days, mode: str = "ai"):
             ])
         })
 
+    topic_hub = build_topic_hub(mode, days)
+
     html = INDEX_TEMPLATE_TOP.format(
         hero_title=escape(config['hero_title']),
         hero_subtitle=escape(config['hero_subtitle']),
@@ -929,13 +960,15 @@ def render_index(days, mode: str = "ai"):
         feature_title=escape(lead_item.get('title_zh', lead_item['title'])),
         feature_summary=escape(clean_summary(lead_item.get('summary_zh', lead_item['summary']), 220)),
         feature_url=lead_item['url'],
-        latest_href=f"days/{latest['date']}.html",
+        latest_href=(f"days/{latest['date']}.html" if mode == "ai" else f"days/{latest['date']}-{mode}.html"),
         latest_date=latest['date'],
         days_count=len(days),
         items_count=total_items,
         category_nav=category_nav,
         category_sections=category_sections,
         populated_categories=populated_categories,
+        topic_hub=topic_hub,
+        theme_class=escape(config['theme_class']),
     ) + "\n".join(cards) + INDEX_TEMPLATE_BOTTOM
 
     output_prefix = "" if mode == "ai" else f"{mode}-"

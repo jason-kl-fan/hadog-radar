@@ -4,12 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI 新聞熱點｜情報哈狗</title>
+  <meta name="description" content="每日 AI / 網安 / 新創熱點整理，可依日期瀏覽並支援站內搜尋。" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="theme-ai">
   <div class="breaking-bar">
     <span class="breaking-label">LIVE</span>
     <div class="ticker"><span>情報哈狗每日焦點更新 · AI / 網安 / 新創 三條線同步追蹤</span></div>
@@ -34,42 +35,37 @@
   </header>
 
   <main class="container home-main">
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>情報哈狗 AI News</title>
-  <meta name="description" content="每日 AI 熱點新聞整理，可依日期瀏覽並支援站內搜尋。" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="breaking-bar">
-    <span class="breaking-label">首頁</span>
-    <div class="ticker"><span>首頁升級成分類區塊：北加州時間每天早上 8:00 自動更新 AI 熱點新聞，支援日期分頁與站內搜尋</span></div>
-  </div>
-  <header class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content container">
-      <p class="channel">情報哈狗 AI NEWS</p>
-      <h1>AI 新聞分類首頁</h1>
-      <p class="subtitle">先看今日頭條，再用分類區塊快速掃描模型、硬體、應用、研究、產業與網路安全動態</p>
-      <div class="search-bar">
-        <input id="site-search" type="search" placeholder="搜尋日期、標題、摘要、來源..." />
-      </div>
-      <div class="hero-tags">
-        <span>分類首頁</span>
-        <span>中文快讀</span>
-        <span>網安新聞</span>
-        <span>手機友善</span>
-        <span>日期分頁</span>
-        <span>站內搜尋</span>
-      </div>
-    </div>
-  </header>
-  <main class="container home-main">
+    <section class="topic-hub">
+        <a class="topic-hub-card theme-ai is-active" href="index.html">
+          <div class="topic-hub-top">
+            <span class="topic-hub-label">AI</span>
+            <span class="topic-hub-count">10 則</span>
+          </div>
+          <h3>AI 新聞熱點</h3>
+          <p>模型、產品、研究與產業脈動</p>
+          <div class="topic-hub-meta">最新日期：2026-04-04</div>
+        </a>
+        
+        <a class="topic-hub-card theme-security" href="security.html">
+          <div class="topic-hub-top">
+            <span class="topic-hub-label">網安</span>
+            <span class="topic-hub-count">10 則</span>
+          </div>
+          <h3>網安新聞熱點</h3>
+          <p>廠商動態、威脅情報、漏洞事件</p>
+          <div class="topic-hub-meta">最新日期：2026-04-04</div>
+        </a>
+        
+        <a class="topic-hub-card theme-startups" href="startups.html">
+          <div class="topic-hub-top">
+            <span class="topic-hub-label">新創</span>
+            <span class="topic-hub-count">10 則</span>
+          </div>
+          <h3>新創公司消息</h3>
+          <p>募資、產品發布、團隊與市場擴張</p>
+          <div class="topic-hub-meta">最新日期：2026-04-04</div>
+        </a>
+        </section>
     <section class="home-grid">
       <article class="feature-panel">
         <div class="section-kicker">今日頭條</div>
@@ -95,8 +91,8 @@
           <strong>58</strong>
         </div>
         <div class="stat-card">
-          <span class="stat-label">更新時間</span>
-          <strong>08:00 PT</strong>
+          <span class="stat-label">分類數</span>
+          <strong>5</strong>
         </div>
       </aside>
     </section>
@@ -242,7 +238,7 @@
         <article class="archive-card" data-date="2026-04-04">
           <div>
             <div class="archive-date">2026-04-04</div>
-            <h2><a href="days/2026-04-04.html">2026-04-04 AI 新聞熱點</a></h2>
+            <h2><a href="days/2026-04-04.html">2026-04-04｜AI 新聞熱點</a></h2>
             <p>本週在 R​​SAC 上，*CRN* 與五家網路安全供應商（CrowdStrike、Palo Alto Networks、SentinelOne、Proofpoint 和 Arctic Wolf）的高階主管進行了座談，這些供應商使用了…</p>
           </div>
           <a class="archive-link" href="days/2026-04-04.html">閱讀當日新聞</a>
@@ -252,8 +248,8 @@
         <article class="archive-card" data-date="2026-04-04">
           <div>
             <div class="archive-date">2026-04-04</div>
-            <h2><a href="days/2026-04-04.html">2026-04-04 AI 新聞熱點</a></h2>
-            <p>0.. ×。 * 微軟承諾向日本提供 10B 美元用於人工智慧基礎設施和網路防禦擴展。 * 加州命令各機構在政府合約中說明人工智慧的危害。 * 人工智慧…</p>
+            <h2><a href="days/2026-04-04.html">2026-04-04｜AI 新聞熱點</a></h2>
+            <p>Positron — 10 億美元：這家 AI 半導體新創公司成立於 2023 年，並於 2 月宣布了 2.3 億美元的 B 輪融資。 Apptronik — 53 億美元：這款人形機器人…</p>
           </div>
           <a class="archive-link" href="days/2026-04-04.html">閱讀當日新聞</a>
         </article>
@@ -262,7 +258,7 @@
         <article class="archive-card" data-date="2026-04-04">
           <div>
             <div class="archive-date">2026-04-04</div>
-            <h2><a href="days/2026-04-04.html">2026-04-04 AI 新聞熱點</a></h2>
+            <h2><a href="days/2026-04-04.html">2026-04-04｜AI 新聞熱點</a></h2>
             <p>本週在 R​​SAC 上，*CRN* 與五家網路安全供應商（CrowdStrike、Palo Alto Networks、SentinelOne、Proofpoint 和 Arctic Wolf）的高階主管進行了座談，這些供應商使用了…</p>
           </div>
           <a class="archive-link" href="days/2026-04-04.html">閱讀當日新聞</a>
@@ -272,7 +268,7 @@
         <article class="archive-card" data-date="2026-04-03">
           <div>
             <div class="archive-date">2026-04-03</div>
-            <h2><a href="days/2026-04-03.html">2026-04-03 AI 新聞熱點</a></h2>
+            <h2><a href="days/2026-04-03.html">2026-04-03｜AI 新聞熱點</a></h2>
             <p>到 2026 年，人工智慧已從一種可選的行銷工具轉變為社群媒體成長的核心組成部分。球員們。社群媒體的成長。一個</p>
           </div>
           <a class="archive-link" href="days/2026-04-03.html">閱讀當日新聞</a>
@@ -282,7 +278,7 @@
         <article class="archive-card" data-date="2026-04-02">
           <div>
             <div class="archive-date">2026-04-02</div>
-            <h2><a href="days/2026-04-02.html">2026-04-02 AI 新聞熱點</a></h2>
+            <h2><a href="days/2026-04-02.html">2026-04-02｜AI 新聞熱點</a></h2>
             <p># 公司 3 月裁員 6 萬人——人工智慧是罪魁禍首。我們的最佳故事、獨家報導和《富比士》對當天頭條新聞的看法。建立您的免費帳戶以</p>
           </div>
           <a class="archive-link" href="days/2026-04-02.html">閱讀當日新聞</a>
@@ -292,7 +288,7 @@
         <article class="archive-card" data-date="2026-04-01">
           <div>
             <div class="archive-date">2026-04-01</div>
-            <h2><a href="days/2026-04-01.html">2026-04-01 AI 新聞熱點</a></h2>
+            <h2><a href="days/2026-04-01.html">2026-04-01｜AI 新聞熱點</a></h2>
             <p>跳轉至：最新更新»。尋找作者</p>
           </div>
           <a class="archive-link" href="days/2026-04-01.html">閱讀當日新聞</a>
