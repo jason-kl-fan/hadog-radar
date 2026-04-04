@@ -5,6 +5,7 @@ import re
 import subprocess
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlparse
 import urllib.parse
 import urllib.request
 from zoneinfo import ZoneInfo
@@ -16,6 +17,43 @@ TRANSLATION_CACHE_PATH = ROOT / "translation-cache.json"
 SKILL_SCRIPT = Path("/root/.openclaw/workspace-tg-group-5075638349/skills/openclaw-tavily-search/scripts/tavily_search.py")
 TZ = ZoneInfo("America/Los_Angeles")
 TRANSLATION_CACHE = {}
+
+TRUSTED_DOMAINS = [
+    "techcrunch.com",
+    "theverge.com",
+    "venturebeat.com",
+    "openai.com",
+    "anthropic.com",
+    "googleblog.com",
+    "blog.google",
+    "blogs.microsoft.com",
+    "microsoft.com",
+    "securityweek.com",
+    "thehackernews.com",
+    "bleepingcomputer.com",
+    "darkreading.com",
+    "cyberscoop.com",
+    "theregister.com",
+    "forbes.com",
+    "axios.com",
+    "fortune.com",
+    "barracuda.com",
+    "fortinet.com",
+    "paloaltonetworks.com",
+    "checkpoint.com",
+    "check point.com",
+]
+
+SECURITY_COMPANIES = [
+    "Fortinet",
+    "Palo Alto Networks",
+    "Check Point",
+    "Barracuda",
+    "CrowdStrike",
+    "SentinelOne",
+    "Zscaler",
+    "Okta",
+]
 
 DEFAULT_ITEMS = [
     {
@@ -126,6 +164,18 @@ CATEGORIES = [
             "lawsuit", "safety", "funding", "raised", "market", "investment", "enterprise value"
         ],
     },
+    {
+        "id": "security",
+        "label": "網路安全",
+        "description": "資安大廠、威脅情報、防禦產品、漏洞事件與企業安全動態",
+        "keywords": [
+            "cybersecurity", "cyber", "security", "threat", "threat intel", "ransomware", "breach",
+            "malware", "phishing", "zero day", "zero-day", "vulnerability", "fortinet",
+            "palo alto", "palo alto networks", "check point", "checkpoint", "barracuda",
+            "crowdstrike", "sentinelone", "zscaler", "okta", "firewall", "soc", "siem",
+            "xdr", "sase", "vpn", "attack"
+        ],
+    },
 ]
 
 INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
@@ -150,13 +200,14 @@ INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
     <div class=\"hero-content container\">
       <p class=\"channel\">情報哈狗 AI NEWS</p>
       <h1>AI 新聞分類首頁</h1>
-      <p class=\"subtitle\">先看今日頭條，再用分類區塊快速掃描模型、硬體、應用、研究與產業動態</p>
+      <p class=\"subtitle\">先看今日頭條，再用分類區塊快速掃描模型、硬體、應用、研究、產業與網路安全動態</p>
       <div class=\"search-bar\">
         <input id=\"site-search\" type=\"search\" placeholder=\"搜尋日期、標題、摘要、來源...\" />
       </div>
       <div class=\"hero-tags\">
         <span>分類首頁</span>
         <span>中文快讀</span>
+        <span>網安新聞</span>
         <span>手機友善</span>
         <span>日期分頁</span>
         <span>站內搜尋</span>
@@ -259,25 +310,90 @@ def today_str():
     return datetime.now(TZ).strftime("%Y-%m-%d")
 
 
-def fetch_news(date_str: str):
-    query = f"AI news headlines {date_str} top stories"
-    cmd = ["python3", str(SKILL_SCRIPT), "--query", query, "--max-results", "10", "--format", "brave"]
+def hostname_from_url(url: str) -> str:
+    host = urlparse(url).netloc.lower().replace("www.", "")
+    return host
+
+
+def is_trusted_domain(url: str) -> bool:
+    host = hostname_from_url(url)
+    return any(host == domain or host.endswith(f".{domain}") for domain in TRUSTED_DOMAINS)
+
+
+def company_bonus(text_blob: str) -> int:
+    blob = text_blob.lower()
+    return sum(1 for company in SECURITY_COMPANIES if company.lower() in blob)
+
+
+def score_result(result: dict, query_kind: str) -> int:
+    title = result.get("title", "") or ""
+    snippet = result.get("snippet", "") or ""
+    url = result.get("url", "") or ""
+    blob = f"{title} {snippet} {url}".lower()
+    host = hostname_from_url(url)
+
+    score = 0
+    if is_trusted_domain(url):
+        score += 6
+    if query_kind == "security":
+        score += 3
+    if any(word in blob for word in ["youtube", "podcast", "video", "linkedin"]):
+        score -= 6
+    if any(word in blob for word in ["april fools", "press release", "sponsored", "advertisement"]):
+        score -= 5
+    if any(word in blob for word in ["ai", "artificial intelligence"]):
+        score += 2
+    if any(word in blob for word in ["security", "cyber", "threat", "ransomware", "breach", "vulnerability"]):
+        score += 3
+    score += company_bonus(blob) * 4
+    if host in {"youtube.com", "linkedin.com"}:
+        score -= 8
+    return score
+
+
+def run_tavily_query(query: str):
+    cmd = ["python3", str(SKILL_SCRIPT), "--query", query, "--max-results", "12", "--format", "brave"]
     out = subprocess.check_output(cmd, text=True)
     data = json.loads(out)
-    results = data.get("results", [])[:10]
+    return data.get("results", [])
+
+
+def fetch_news(date_str: str):
+    security_query = (
+        f"AI cybersecurity news {date_str} Fortinet Palo Alto Networks Check Point Barracuda"
+    )
+    queries = [
+        (f"AI news headlines {date_str} top stories", "general"),
+        (security_query, "security"),
+    ]
+
+    collected = []
+    seen_urls = set()
+    for query, query_kind in queries:
+        for result in run_tavily_query(query):
+            url = result.get("url", "#")
+            if not url or url in seen_urls:
+                continue
+            seen_urls.add(url)
+            result["_score"] = score_result(result, query_kind)
+            collected.append(result)
+
+    results = sorted(collected, key=lambda item: item.get("_score", 0), reverse=True)[:10]
     items = []
     for r in results:
         title = clean_title(r.get("title", "未命名新聞"))
         url = r.get("url", "#")
         snippet = clean_summary(r.get("snippet") or "")
         source = source_from_url(url)
+        if source in {"youtube.com", "linkedin.com", "compliancepodcastnetwork.net"}:
+            continue
         items.append({
             "title": title,
             "url": url,
             "summary": snippet,
             "source": source
         })
-    return items
+    return items[:10]
 
 
 def source_from_url(url: str) -> str:
