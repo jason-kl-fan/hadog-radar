@@ -18,6 +18,39 @@ SKILL_SCRIPT = Path("/root/.openclaw/workspace-tg-group-5075638349/skills/opencl
 TZ = ZoneInfo("America/Los_Angeles")
 TRANSLATION_CACHE = {}
 
+SITE_CONFIGS = {
+    "ai": {
+        "site_name": "情報哈狗 AI NEWS",
+        "page_title": "AI 每日新聞",
+        "hero_title": "AI 新聞熱點",
+        "hero_subtitle": "先看今日頭條，再用分類區塊快速掃描模型、硬體、應用、研究、產業與網路安全動態",
+        "hero_tags": ["AI 頭條", "模型動態", "產品應用", "研究產業", "網安新聞"],
+        "ticker_label": "AI 新聞精選 10 則",
+        "footer_title": "情報哈狗 AI News 首頁",
+        "footer_subtitle": "北加州時間每日 08:00 自動更新 · 新聞內容以中文整理呈現 · 支援搜尋與日期分頁",
+    },
+    "security": {
+        "site_name": "情報哈狗 SECURITY NEWS",
+        "page_title": "網安每日新聞",
+        "hero_title": "網安新聞熱點",
+        "hero_subtitle": "聚焦資安大廠、威脅情報、漏洞事件與企業安全產品動態",
+        "hero_tags": ["資安頭條", "廠商動態", "威脅情報", "漏洞事件", "企業防禦"],
+        "ticker_label": "網安新聞精選 10 則",
+        "footer_title": "情報哈狗 Security News 首頁",
+        "footer_subtitle": "北加州時間每日自動更新 · 聚焦企業安全、威脅研究與漏洞事件",
+    },
+    "startups": {
+        "site_name": "情報哈狗 STARTUP NEWS",
+        "page_title": "新創每日新聞",
+        "hero_title": "新創公司消息",
+        "hero_subtitle": "追蹤新創融資、產品發表、創辦團隊與市場擴張動態",
+        "hero_tags": ["新創頭條", "募資消息", "產品發布", "市場擴張", "創辦團隊"],
+        "ticker_label": "新創新聞精選 10 則",
+        "footer_title": "情報哈狗 Startup News 首頁",
+        "footer_subtitle": "北加州時間每日自動更新 · 聚焦新創公司、募資、產品與市場動態",
+    },
+}
+
 TRUSTED_DOMAINS = [
     "techcrunch.com",
     "theverge.com",
@@ -255,6 +288,41 @@ SECURITY_SUBCATEGORIES = [
 ]
 
 INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{hero_title}｜情報哈狗</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="breaking-bar">
+    <span class="breaking-label">LIVE</span>
+    <div class="ticker"><span>情報哈狗每日焦點更新 · AI / 網安 / 新創 三條線同步追蹤</span></div>
+  </div>
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <p class="channel">{site_name}</p>
+      <h1>{hero_title}</h1>
+      <p class="subtitle">{hero_subtitle}</p>
+      <div class="hero-tags">
+        <span>{hero_tag_1}</span>
+        <span>{hero_tag_2}</span>
+        <span>{hero_tag_3}</span>
+        <span>{hero_tag_4}</span>
+        <span>{hero_tag_5}</span>
+      </div>
+      <div class="search-bar">
+        <input id="searchInput" type="search" placeholder="搜尋日期、公司、主題、關鍵字..." />
+      </div>
+    </div>
+  </header>
+
+  <main class="container home-main">
 <html lang=\"zh-Hant\">
 <head>
   <meta charset=\"UTF-8\" />
@@ -413,6 +481,8 @@ def score_result(result: dict, query_kind: str) -> int:
         score += 6
     if query_kind == "security":
         score += 3
+    if query_kind == "startup":
+        score += 3
     if any(word in blob for word in ["youtube", "podcast", "video", "linkedin"]):
         score -= 6
     if any(word in blob for word in ["april fools", "press release", "sponsored", "advertisement"]):
@@ -420,6 +490,8 @@ def score_result(result: dict, query_kind: str) -> int:
     if any(word in blob for word in ["ai", "artificial intelligence"]):
         score += 2
     if any(word in blob for word in ["security", "cyber", "threat", "ransomware", "breach", "vulnerability"]):
+        score += 3
+    if any(word in blob for word in ["startup", "founder", "funding", "seed", "series a", "series b", "venture", "acquisition", "launch"]):
         score += 3
     score += company_bonus(blob) * 4
     if host in {"youtube.com", "linkedin.com"}:
@@ -434,14 +506,31 @@ def run_tavily_query(query: str):
     return data.get("results", [])
 
 
-def fetch_news(date_str: str):
+def fetch_news(date_str: str, mode: str = "ai"):
     security_query = (
-        f"AI cybersecurity news {date_str} Fortinet Palo Alto Networks Check Point Barracuda"
+        f"AI cybersecurity news {date_str} Fortinet Palo Alto Networks Check Point Barracuda CrowdStrike SentinelOne Zscaler Okta"
     )
-    queries = [
-        (f"AI news headlines {date_str} top stories", "general"),
-        (security_query, "security"),
-    ]
+    startup_query = (
+        f"startup news {date_str} funding launch acquisition founders venture capital unicorn seed series a"
+    )
+
+    if mode == "security":
+        queries = [
+            (f"cybersecurity news {date_str} enterprise security threat intelligence vulnerability", "security"),
+            (security_query, "security"),
+            (f"security vendors news {date_str} Microsoft Security Google Cloud Security Wiz CrowdStrike Palo Alto Networks", "security"),
+        ]
+    elif mode == "startups":
+        queries = [
+            (startup_query, "startup"),
+            (f"tech startups news {date_str} startup funding product launch founders", "startup"),
+            (f"venture capital startup deals {date_str} seed series a series b acquisition", "startup"),
+        ]
+    else:
+        queries = [
+            (f"AI news headlines {date_str} top stories", "general"),
+            (security_query, "security"),
+        ]
 
     collected = []
     seen_urls = set()
@@ -615,50 +704,63 @@ def load_all_days():
     return days
 
 
-def render_day_page(day):
+def render_day_page(day, mode: str = "ai"):
     date = day["date"]
+    config = SITE_CONFIGS[mode]
+    display_items = [display_item(raw_item) for raw_item in day["items"]]
     items_html = []
-    for i, raw_item in enumerate(day["items"], start=1):
-        item = display_item(raw_item)
+    for i, item in enumerate(display_items, start=1):
         items_html.append(f"""
-        <article class=\"headline-card\">
-          <div class=\"rank\">{i}</div>
-          <div class=\"headline-body\">
-            <div class=\"story-source\">{escape(item['source'])}</div>
+        <article class="headline-card">
+          <div class="rank">{i}</div>
+          <div class="headline-body">
+            <div class="story-source">{escape(item['source'])}</div>
             <h3>{escape(item['title_zh'])}</h3>
             <p>{escape(item['summary_zh'])}</p>
-            <a href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">查看原文</a>
+            <a href="{item['url']}" target="_blank" rel="noopener">查看原文</a>
           </div>
         </article>
         """)
 
+    category_nav, category_sections, _ = render_category_sections(display_items)
+
     html = f"""<!DOCTYPE html>
-<html lang=\"zh-Hant\">
+<html lang="zh-Hant">
 <head>
-  <meta charset=\"UTF-8\" />
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{date}｜AI 每日新聞</title>
-  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"> 
-  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
-  <link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap\" rel=\"stylesheet\">
-  <link rel=\"stylesheet\" href=\"../styles.css\" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
-  <div class=\"breaking-bar\">
-    <span class=\"breaking-label\">每日</span>
-    <div class=\"ticker\"><span>{date} AI 新聞精選 10 則</span></div>
+  <div class="breaking-bar">
+    <span class="breaking-label">每日</span>
+    <div class="ticker"><span>{date} {config['ticker_label']}</span></div>
   </div>
-  <header class=\"hero hero-small\">
-    <div class=\"hero-overlay\"></div>
-    <div class=\"hero-content container\">
-      <p class=\"channel\">情報哈狗 AI NEWS</p>
-      <h1>{date} AI 新聞熱點</h1>
-      <p class=\"subtitle\">每日自動生成專題頁 · 手機也好讀</p>
-      <p><a class=\"back-link\" href=\"../index.html\">← 返回首頁 / 日期總覽</a></p>
+  <header class="hero hero-small">
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <p class="channel">{config['site_name']}</p>
+      <h1>{date}｜{config['hero_title']}</h1>
+      <p class="subtitle">每日自動生成專題頁 · 手機也好讀</p>
+      <p><a class="back-link" href="../index.html">← 返回首頁 / 日期總覽</a></p>
     </div>
   </header>
-  <main class=\"container\">
-    <section class=\"day-grid\">
+  <main class="container">
+    <section class="section-block day-category-block">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">分類總覽</div>
+          <h2>當日分類速覽</h2>
+        </div>
+      </div>
+      <div class="category-nav">{category_nav}</div>
+      <div class="category-grid">{category_sections}</div>
+    </section>
+    <section class="day-grid">
       {''.join(items_html)}
     </section>
   </main>
@@ -666,7 +768,6 @@ def render_day_page(day):
 </html>
 """
     (DAYS_DIR / f"{date}.html").write_text(html, encoding="utf-8")
-
 
 def render_category_sections(items):
     grouped = {}
@@ -767,15 +868,16 @@ def render_category_sections(items):
     return "".join(nav_html), "".join(sections_html), len(non_empty_groups)
 
 
-def render_index(days):
+def render_index(days, mode: str = "ai"):
+    config = SITE_CONFIGS[mode]
     latest = days[0]
     latest_items = [display_item(item) for item in latest.get("items", [])]
     lead_item = latest_items[0] if latest_items else {
-        "title": "今日 AI 焦點整理",
-        "title_zh": "今日 AI 焦點整理",
-        "summary": "這一期已整理最新 AI 熱點，點進去看完整榜單。",
-        "summary_zh": "這一期已整理最新 AI 熱點，點進去看完整榜單。",
-        "source": "情報哈狗 AI News",
+        "title": f"今日{config['hero_title']}整理",
+        "title_zh": f"今日{config['hero_title']}整理",
+        "summary": "這一期已整理最新重點，點進去看完整榜單。",
+        "summary_zh": "這一期已整理最新重點，點進去看完整榜單。",
+        "source": config['footer_title'],
         "url": f"days/{latest['date']}.html",
     }
 
@@ -801,7 +903,7 @@ def render_index(days):
         search_index.append({
             "date": day["date"],
             "href": day_link,
-            "title": f"{day['date']} AI 新聞熱點",
+            "title": f"{day['date']}｜{config['hero_title']}",
             "text": " ".join([
                 day["date"],
                 *(item["title"] for item in day["items"]),
@@ -813,6 +915,16 @@ def render_index(days):
         })
 
     html = INDEX_TEMPLATE_TOP.format(
+        hero_title=escape(config['hero_title']),
+        hero_subtitle=escape(config['hero_subtitle']),
+        hero_tag_1=escape(config['hero_tags'][0]),
+        hero_tag_2=escape(config['hero_tags'][1]),
+        hero_tag_3=escape(config['hero_tags'][2]),
+        hero_tag_4=escape(config['hero_tags'][3]),
+        hero_tag_5=escape(config['hero_tags'][4]),
+        site_name=escape(config['site_name']),
+        footer_title=escape(config['footer_title']),
+        footer_subtitle=escape(config['footer_subtitle']),
         feature_source=escape(lead_item['source']),
         feature_title=escape(lead_item.get('title_zh', lead_item['title'])),
         feature_summary=escape(clean_summary(lead_item.get('summary_zh', lead_item['summary']), 220)),
@@ -826,8 +938,11 @@ def render_index(days):
         populated_categories=populated_categories,
     ) + "\n".join(cards) + INDEX_TEMPLATE_BOTTOM
 
-    (ROOT / "index.html").write_text(html, encoding="utf-8")
-    (ROOT / "search-index.json").write_text(json.dumps(search_index, ensure_ascii=False, indent=2), encoding="utf-8")
+    output_prefix = "" if mode == "ai" else f"{mode}-"
+    index_name = "index.html" if mode == "ai" else f"{mode}.html"
+    search_name = "search-index.json" if mode == "ai" else f"search-index-{mode}.json"
+    (ROOT / index_name).write_text(html, encoding="utf-8")
+    (ROOT / search_name).write_text(json.dumps(search_index, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def escape(text: str) -> str:
@@ -841,25 +956,39 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--fetch", action="store_true")
     parser.add_argument("--date", default=today_str())
+    parser.add_argument("--mode", choices=["ai", "security", "startups"], default="ai")
     args = parser.parse_args()
 
     ensure_dirs()
     load_translation_cache()
 
-    target_json = DATA_DIR / f"{args.date}.json"
+    target_json_name = f"{args.date}.json" if args.mode == "ai" else f"{args.date}-{args.mode}.json"
+    target_json = DATA_DIR / target_json_name
     if args.fetch or not target_json.exists():
         try:
-            items = fetch_news(args.date)
+            items = fetch_news(args.date, args.mode)
             if not items:
                 items = DEFAULT_ITEMS
         except Exception:
             items = DEFAULT_ITEMS
-        save_day(args.date, items)
+        payload = {
+            "date": args.date,
+            "generatedAt": datetime.now(TZ).isoformat(),
+            "items": [display_item(item) for item in items]
+        }
+        target_json.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    days = load_all_days()
+    if args.mode == "ai":
+        days = load_all_days()
+    else:
+        days = []
+        for path in sorted(DATA_DIR.glob(f"*-{args.mode}.json"), reverse=True):
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            payload["items"] = [display_item(item) for item in payload.get("items", [])]
+            days.append(payload)
     for day in days:
-        render_day_page(day)
-    render_index(days)
+        render_day_page(day, args.mode)
+    render_index(days, args.mode)
     save_translation_cache()
 
 
