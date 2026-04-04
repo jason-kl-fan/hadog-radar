@@ -219,6 +219,41 @@ CATEGORIES = [
     },
 ]
 
+SECURITY_SUBCATEGORIES = [
+    {
+        "id": "security-vendors",
+        "label": "廠商動態",
+        "description": "資安大廠的產品更新、合作、財報、研究報告與策略布局",
+        "keywords": [
+            "fortinet", "palo alto", "palo alto networks", "check point", "checkpoint", "barracuda",
+            "crowdstrike", "sentinelone", "zscaler", "okta", "cisco", "microsoft security",
+            "google cloud security", "mandiant", "trend micro", "sophos", "cloudflare",
+            "proofpoint", "rapid7", "tenable", "qualys", "wiz", "netskope", "cyberark",
+            "mimecast", "arctic wolf", "splunk", "carbon black", "rsac", "earnings",
+            "partnership", "launch", "report", "platform", "xdr", "sase", "siem"
+        ],
+    },
+    {
+        "id": "security-threats",
+        "label": "威脅情報",
+        "description": "APT、勒索軟體、攻擊趨勢、釣魚與威脅研究動態",
+        "keywords": [
+            "threat", "threat intel", "threat intelligence", "apt", "ransomware", "phishing",
+            "malware", "botnet", "campaign", "attacker", "attackers", "cyberattack", "breach",
+            "incident response", "unit 42", "threat actor", "stolen identities", "intrusion"
+        ],
+    },
+    {
+        "id": "security-vulns",
+        "label": "漏洞事件",
+        "description": "零日漏洞、漏洞利用、修補更新與重大安全事件",
+        "keywords": [
+            "vulnerability", "vulnerabilities", "zero day", "zero-day", "cve", "exploit",
+            "patch", "patched", "security flaw", "bug", "exposure", "compromise"
+        ],
+    },
+]
+
 INDEX_TEMPLATE_TOP = """<!DOCTYPE html>
 <html lang=\"zh-Hant\">
 <head>
@@ -547,6 +582,21 @@ def classify_item(item):
     }
 
 
+def classify_security_subcategory(item):
+    blob = " ".join([
+        item.get("title", ""),
+        item.get("summary", ""),
+        item.get("source", ""),
+        item.get("url", ""),
+    ]).lower()
+
+    for subcategory in SECURITY_SUBCATEGORIES:
+        if any(keyword in blob for keyword in subcategory["keywords"]):
+            return subcategory
+
+    return SECURITY_SUBCATEGORIES[0]
+
+
 def save_day(date_str: str, items):
     payload = {
         "date": date_str,
@@ -643,6 +693,52 @@ def render_category_sections(items):
         nav_html.append(
             f'<a class="category-chip" href="#{group["id"]}">{escape(group["label"])}<span>{len(group["items"])} 則</span></a>'
         )
+
+        if group["id"] == "security":
+            security_groups = {sub["id"]: {**sub, "items": []} for sub in SECURITY_SUBCATEGORIES}
+            for item in group["items"]:
+                subcategory = classify_security_subcategory(item)
+                security_groups[subcategory["id"]]["items"].append(item)
+
+            subcards = []
+            for sub in SECURITY_SUBCATEGORIES:
+                sub_group = security_groups[sub["id"]]
+                if not sub_group["items"]:
+                    continue
+                sub_items = []
+                for item in sub_group["items"][:3]:
+                    sub_items.append(f"""
+                    <article class=\"mini-item\">
+                      <div class=\"mini-meta\">{escape(item['source'])}</div>
+                      <h3><a class=\"mini-link\" href=\"{item['url']}\" target=\"_blank\" rel=\"noopener\">{escape(item['title_zh'])}</a></h3>
+                      <p>{escape(item['summary_zh'])}</p>
+                    </article>
+                    """)
+                subcards.append(f"""
+                <section class=\"security-subpanel\">
+                  <div class=\"security-subhead\">
+                    <h4>{escape(sub_group['label'])}</h4>
+                    <span>{len(sub_group['items'])} 則</span>
+                  </div>
+                  <p class=\"category-desc\">{escape(sub_group['description'])}</p>
+                  <div class=\"mini-list\">{''.join(sub_items)}</div>
+                </section>
+                """)
+
+            sections_html.append(f"""
+            <article id=\"{group['id']}\" class=\"category-panel category-panel-security\">
+              <div class=\"category-head\">
+                <div>
+                  <div class=\"section-kicker\">分類</div>
+                  <h3>{escape(group['label'])}</h3>
+                </div>
+                <div class=\"category-count\">{len(group['items'])} 則</div>
+              </div>
+              <p class=\"category-desc\">{escape(group['description'])}</p>
+              <div class=\"security-subgrid\">{''.join(subcards)}</div>
+            </article>
+            """)
+            continue
 
         mini_items = []
         for item in group["items"][:3]:
