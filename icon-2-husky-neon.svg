@@ -1,0 +1,30 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="60" x2="430" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#091629"/>
+      <stop offset="1" stop-color="#030711"/>
+    </linearGradient>
+    <linearGradient id="face" x1="150" y1="110" x2="360" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5FF3FF"/>
+      <stop offset="1" stop-color="#52A8FF"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#bg)"/>
+  <path d="M158 178L200 94L238 184" stroke="url(#face)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <path d="M354 178L312 94L274 184" stroke="url(#face)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <path d="M154 210C154 153 200 116 256 116C312 116 358 153 358 210V270C358 334 313 388 256 388C199 388 154 334 154 270V210Z" stroke="url(#face)" stroke-width="22" fill="rgba(23,43,77,0.2)" filter="url(#glow)"/>
+  <path d="M212 252L256 300L300 252" stroke="#D7F8FF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M206 322C222 340 238 348 256 348C274 348 290 340 306 322" stroke="#21F3C8" stroke-width="14" stroke-linecap="round"/>
+  <ellipse cx="214" cy="234" rx="12" ry="18" fill="#D7F8FF"/>
+  <ellipse cx="298" cy="234" rx="12" ry="18" fill="#D7F8FF"/>
+  <circle cx="214" cy="236" r="5" fill="#07111F"/>
+  <circle cx="298" cy="236" r="5" fill="#07111F"/>
+  <circle cx="256" cy="290" r="10" fill="#FF7B5C"/>
+</svg>

@@ -1,0 +1,124 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="900" fill="#050913"/>
+<text x="80" y="90" fill="#EAF2FF" font-size="42" font-family="Arial, Noto Sans TC, sans-serif" font-weight="700">Hadog Radar Icon Drafts</text>
+<g transform="translate(80,140) scale(0.7)">
+  <defs>
+    <linearGradient id="bg" x1="64" y1="48" x2="448" y2="464" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1830"/>
+      <stop offset="1" stop-color="#040814"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="96" y1="96" x2="416" y2="416" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#42E8FF"/>
+      <stop offset="1" stop-color="#00FFA3"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="150" stroke="#12345C" stroke-width="4"/>
+  <circle cx="256" cy="256" r="112" stroke="#12345C" stroke-width="3"/>
+  <path d="M256 106 A150 150 0 0 1 406 256" stroke="url(#neon)" stroke-width="10" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M128 128L384 384" stroke="#21F3C8" stroke-width="8" stroke-linecap="round" opacity="0.7"/>
+  <path d="M170 142V370M170 256H342M342 142V370" stroke="url(#neon)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <circle cx="362" cy="150" r="14" fill="#FF6A4D"/>
+
+</g>
+<text x="80" y="535" fill="#EAF2FF" font-size="30" font-family="Arial, Noto Sans TC, sans-serif" font-weight="700">1. H + 雷達圈</text>
+<g transform="translate(620,140) scale(0.7)">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="60" x2="430" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#091629"/>
+      <stop offset="1" stop-color="#030711"/>
+    </linearGradient>
+    <linearGradient id="face" x1="150" y1="110" x2="360" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5FF3FF"/>
+      <stop offset="1" stop-color="#52A8FF"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#bg)"/>
+  <path d="M158 178L200 94L238 184" stroke="url(#face)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <path d="M354 178L312 94L274 184" stroke="url(#face)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <path d="M154 210C154 153 200 116 256 116C312 116 358 153 358 210V270C358 334 313 388 256 388C199 388 154 334 154 270V210Z" stroke="url(#face)" stroke-width="22" fill="rgba(23,43,77,0.2)" filter="url(#glow)"/>
+  <path d="M212 252L256 300L300 252" stroke="#D7F8FF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M206 322C222 340 238 348 256 348C274 348 290 340 306 322" stroke="#21F3C8" stroke-width="14" stroke-linecap="round"/>
+  <ellipse cx="214" cy="234" rx="12" ry="18" fill="#D7F8FF"/>
+  <ellipse cx="298" cy="234" rx="12" ry="18" fill="#D7F8FF"/>
+  <circle cx="214" cy="236" r="5" fill="#07111F"/>
+  <circle cx="298" cy="236" r="5" fill="#07111F"/>
+  <circle cx="256" cy="290" r="10" fill="#FF7B5C"/>
+
+</g>
+<text x="620" y="535" fill="#EAF2FF" font-size="30" font-family="Arial, Noto Sans TC, sans-serif" font-weight="700">2. 哈士奇臉 + 霓虹線條</text>
+<g transform="translate(80,500) scale(0.7)">
+  <defs>
+    <linearGradient id="bg" x1="70" y1="50" x2="430" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A1730"/>
+      <stop offset="1" stop-color="#040814"/>
+    </linearGradient>
+    <linearGradient id="paw" x1="130" y1="120" x2="350" y2="380" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#39E7FF"/>
+      <stop offset="1" stop-color="#00F0B5"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#bg)"/>
+  <circle cx="176" cy="180" r="34" fill="url(#paw)" filter="url(#glow)"/>
+  <circle cx="240" cy="140" r="34" fill="url(#paw)" filter="url(#glow)"/>
+  <circle cx="310" cy="140" r="34" fill="url(#paw)" filter="url(#glow)"/>
+  <circle cx="374" cy="180" r="34" fill="url(#paw)" filter="url(#glow)"/>
+  <path d="M178 300C178 250 213 214 256 214C299 214 334 250 334 300C334 353 300 398 256 398C212 398 178 353 178 300Z" fill="url(#paw)" filter="url(#glow)"/>
+  <path d="M130 360C164 330 204 314 248 312" stroke="#1AA4FF" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+  <path d="M110 402C154 360 208 338 268 336" stroke="#1AA4FF" stroke-width="12" stroke-linecap="round" opacity="0.55"/>
+  <path d="M98 446C152 392 220 364 296 362" stroke="#1AA4FF" stroke-width="12" stroke-linecap="round" opacity="0.3"/>
+
+</g>
+<text x="80" y="895" fill="#EAF2FF" font-size="30" font-family="Arial, Noto Sans TC, sans-serif" font-weight="700">3. 狗爪 + 訊號波紋</text>
+<g transform="translate(620,500) scale(0.7)">
+  <defs>
+    <linearGradient id="bg" x1="84" y1="48" x2="430" y2="462" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0C1B34"/>
+      <stop offset="1" stop-color="#03060F"/>
+    </linearGradient>
+    <linearGradient id="line" x1="156" y1="120" x2="356" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#49E8FF"/>
+      <stop offset="1" stop-color="#00FFB2"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#bg)"/>
+  <path d="M166 132V380M346 132V380M166 256H346" stroke="url(#line)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <path d="M128 154H384" stroke="#173E63" stroke-width="4" opacity="0.8"/>
+  <path d="M128 214H384" stroke="#173E63" stroke-width="4" opacity="0.8"/>
+  <path d="M128 274H384" stroke="#173E63" stroke-width="4" opacity="0.8"/>
+  <path d="M128 334H384" stroke="#173E63" stroke-width="4" opacity="0.8"/>
+  <rect x="104" y="232" width="304" height="46" rx="23" fill="#1DF0C7" opacity="0.12"/>
+  <rect x="116" y="236" width="136" height="38" rx="19" fill="url(#line)" opacity="0.95" filter="url(#glow)"/>
+  <circle cx="388" cy="116" r="12" fill="#FF6B4A"/>
+
+</g>
+<text x="620" y="895" fill="#EAF2FF" font-size="30" font-family="Arial, Noto Sans TC, sans-serif" font-weight="700">4. H + 掃描光束</text>
+</svg>
