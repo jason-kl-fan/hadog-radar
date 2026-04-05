@@ -1,0 +1,22 @@
+{
+  "name": "Hadog Radar",
+  "short_name": "Hadog",
+  "description": "AI / Security / Startup Signals",
+  "start_url": "/hadog-radar/",
+  "scope": "/hadog-radar/",
+  "display": "standalone",
+  "background_color": "#050913",
+  "theme_color": "#050913",
+  "icons": [
+    {
+      "src": "./apple-touch-icon.jpg",
+      "sizes": "675x675",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "./favicon.jpg",
+      "sizes": "675x675",
+      "type": "image/jpeg"
+    }
+  ]
+}
