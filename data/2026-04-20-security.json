@@ -1,0 +1,86 @@
+{
+  "date": "2026-04-20",
+  "generatedAt": "2026-04-20T08:30:23.061762-07:00",
+  "items": [
+    {
+      "title": "Beyond the Perimeter 2026 with CrowdStrike, Okta and Zscaler | CrowdCast",
+      "title_zh": "借助 CrowdStrike、Okta 和 Zscaler 超越邊界 2026 |群播",
+      "url": "https://www.crowdstrike.com/en-us/resources/crowdcasts/okta-zscaler-beyond-the-perimeter-2026/",
+      "summary": "# Beyond the Perimeter 2026 with CrowdStrike, Okta and Zscaler. Integrated Security for the AI Era. AI is changing how attacks unfold — faster execution, more automation, and less…",
+      "summary_zh": "# 與 CrowdStrike、Okta 和 Zscaler 一起超越邊界 2026。人工智慧時代的綜合安全。人工智慧正在改變攻擊的展開方式——執行速度更快、自動化程度更高、更少…",
+      "source": "crowdstrike.com"
+    },
+    {
+      "title": "9 AI Cybersecurity Trends to Watch in 2026",
+      "title_zh": "2026 年值得關注的 9 個人工智慧網路安全趨勢",
+      "url": "https://www.sentinelone.com/cybersecurity-101/data-and-ai/ai-cybersecurity-trends/",
+      "summary": "_. * AI for Security Leading the Way in AI-Powered Security Solutions. * Data Pipelines Security Data Pipeline for AI SIEM and Data Optimization. * Singularity Cloud Security…",
+      "summary_zh": "_。 * 人工智慧安全引領人工智慧驅動的安全解決方案。 * 資料管道 用於 AI SIEM 和資料優化的安全資料管道。 * 奇點雲端安全",
+      "source": "sentinelone.com"
+    },
+    {
+      "title": "2026 Cybersecurity Predictions - Palo Alto Networks",
+      "title_zh": "2026 年網路安全預測 - Palo Alto Networks",
+      "url": "https://www.paloaltonetworks.com/cybersecurity-perspectives/2026-cyber-predictions",
+      "summary": "# 6 Predictions for the AI Economy: 2026's New Rules of Cybersecurity. where the global economy transitions from \"AI-assisted\" to \"AI-native.” We won't just adopt new tools…",
+      "summary_zh": "#6 人工智慧經濟預測：2026 年網路安全新規則。全球經濟從「人工智慧輔助」轉向「人工智慧原生」。我們不僅會採用新工具",
+      "source": "paloaltonetworks.com"
+    },
+    {
+      "title": "Events | Tenable®",
+      "title_zh": "活動 | Tenable®",
+      "url": "https://www.tenable.com/events",
+      "summary": "# Tenable One Exposure Management Platform. * Tenable Cloud Security (CNAPP) Request a demo. * Tenable Cloud Vulnerability Management Request a demo. * Tenable Security Center…",
+      "summary_zh": "# Tenable One 曝光管理平台。 * Tenable Cloud Security (CNAPP) 請求示範。 * Tenable Cloud 漏洞管理 請求演示。 * Tenable 安全中心",
+      "source": "tenable.com"
+    },
+    {
+      "title": "Cybersecurity Stocks: Complete List of Cyber Security Companies | StockTitan",
+      "title_zh": "Cybersecurity Stocks: Complete List of Cyber Security Companies | StockTitan",
+      "url": "https://www.stocktitan.net/stocks/themes/cybersecurity-stocks",
+      "summary": "# Cybersecurity Stocks: Complete List of Cyber Security Companies. # Palo Alto Networks Inc. Market Cap: $131.05 B (1.05% of sector). World's largest cybersecurity company by…",
+      "summary_zh": "# 网络安全股票：网络安全公司的完整列表。 # Palo Alto Networks Inc. 市值：131.05 美元 B（占行业的 1.05%）。全球最大的網路安全公司",
+      "source": "stocktitan.net"
+    },
+    {
+      "title": "Why Threat Intelligence Is the Missing Link in CTEM Prioritization",
+      "title_zh": "為什麼威脅情報是 CTEM 優先順序中缺少的一環",
+      "url": "https://thehackernews.com/expert-insights/2026/04/why-threat-intelligence-is-missing-link.html",
+      "summary": "# Why Threat Intelligence Is the Missing Link in CTEM Prioritization and Validation. One of the most practical ways to operationalize this in a tool setting is through Priority…",
+      "summary_zh": "# 為什麼威脅情報是 CTEM 優先劃分和驗證中缺少的環節。在工具設定中實施此操作的最實用方法之一是透過優先順序…",
+      "source": "thehackernews.com"
+    },
+    {
+      "title": "Cybersecurity News, Insights and Analysis | SecurityWeek",
+      "title_zh": "網路安全新聞、見解和分析 |安全周刊",
+      "url": "https://www.securityweek.com/",
+      "summary": "The cybersecurity response to AI-enabled nation-state threats cannot be incremental. Subscribe to the SecurityWeek Email Briefing to stay informed on the latest threats, trends…",
+      "summary_zh": "對人工智慧驅動的民族國家威脅的網路安全回應不能是漸進的。訂閱 SecurityWeek 電子郵件簡報，隨時了解最新的威脅、趨勢…",
+      "source": "securityweek.com"
+    },
+    {
+      "title": "Google Cloud release notes",
+      "title_zh": "Google Cloud 發行說明",
+      "url": "https://docs.cloud.google.com/release-notes",
+      "summary": "* GKE upgrades clusters to the following new patch versions if no minor version upgrade is available, or if the cluster has maintenance exclusions or other factors preventing…",
+      "summary_zh": "* 如果沒有可用的次要版本升級，或者叢集有維護排除或其他因素阻止...，GKE 會將叢集升級到以下新補丁版本",
+      "source": "docs.cloud.google.com"
+    },
+    {
+      "title": "Latest Cybersecurity News & Trends - Channel Futures",
+      "title_zh": "最新網路安全新聞和趨勢 - Channel Futures",
+      "url": "https://www.channelfutures.com/security",
+      "summary": "Get the latest channel cybersecurity trends and news from our Channel Futures editors. Featuring cybersecurity layoffs, acquisitions, insights and more",
+      "summary_zh": "從我們的頻道期貨編輯處獲取最新的頻道網路安全趨勢和新聞。包括網路安全裁員、收購、見解等",
+      "source": "channelfutures.com"
+    },
+    {
+      "title": "April 20, 2026 - Brilliance Security Magazine",
+      "title_zh": "2026 年 4 月 20 日 - 華晨安全雜誌",
+      "url": "https://brilliancesecuritymagazine.com/2026/04/20/",
+      "summary": "Threat Detection, Threat Hunting, Threat Intelligence, Travel, Ukraine, Visitor Management, VPN, Vulnerability Assessment, Weapons, Web Security",
+      "summary_zh": "威脅偵測、威脅搜尋、威脅情報、旅行、烏克蘭、訪客管理、VPN、漏洞評估、武器、網路安全",
+      "source": "brilliancesecuritymagazine.com"
+    }
+  ]
+}
