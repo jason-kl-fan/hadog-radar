@@ -1,0 +1,86 @@
+{
+  "date": "2026-04-26",
+  "generatedAt": "2026-04-26T08:30:20.996254-07:00",
+  "items": [
+    {
+      "title": "CrowdStrike, Cisco and Palo Alto Networks all shipped agentic SOC tools at RSAC 2026 — the agent behavioral…",
+      "title_zh": "CrowdStrike、思科和 Palo Alto Networks 都在 RSAC 2026 上發布了代理 SOC 工具——代理行為…",
+      "url": "https://venturebeat.com/security/rsac-2026-agentic-soc-agent-telemetry-security-gap",
+      "summary": "Approach A: AI agents inside the SIEM. Cisco and Splunk announced six specialized AI agents for Splunk Enterprise Security: Detection Builder, Triage, Guided Response, Standard…",
+      "summary_zh": "方法 A：SIEM 內的 AI 代理程式。思科和 Splunk 宣布推出六種用於 Splunk Enterprise Security 的專用 AI 代理：Detection Builder、Triage、Guided Response、Standard…",
+      "source": "venturebeat.com"
+    },
+    {
+      "title": "Cyber Security Shares Jump. Tenable, Zscaler up Around 7%; CrowdStrike up Nearly 6%; Palo Alto, SentinelOne…",
+      "title_zh": "網路安全股價上漲。成立，Zscaler 上漲約 7%； CrowdStrike上漲近6%；帕洛阿爾托、SentinelOne…",
+      "url": "https://www.itiger.com/news/1174798640",
+      "summary": "How to Open an Account? - Open a fund account and transaction. - How to Open Cash Boost Account. - How to Contra Trade using Cash Boost Account. - How to link your CDP Securities…",
+      "summary_zh": "如何開設帳戶？ - 開立資金帳戶並進行交易。 - 如何開設現金增值帳戶。 - 如何使用現金增值帳戶進行對銷交易。 - 如何連結您的 CDP 證券",
+      "source": "itiger.com"
+    },
+    {
+      "title": "Beyond the Perimeter 2026 with CrowdStrike, Okta and Zscaler | CrowdCast",
+      "title_zh": "借助 CrowdStrike、Okta 和 Zscaler 超越邊界 2026 |群播",
+      "url": "https://www.crowdstrike.com/content/crowdstrike-www/locale-sites/us/en-us/resources/crowdcasts/okta-zscaler-beyond-the-perimeter-2026.html",
+      "summary": "# Beyond the Perimeter 2026 with CrowdStrike, Okta and Zscaler. Integrated Security for the AI Era. AI is changing how attacks unfold — faster execution, more automation, and less…",
+      "summary_zh": "# 與 CrowdStrike、Okta 和 Zscaler 一起超越邊界 2026。人工智慧時代的綜合安全。人工智慧正在改變攻擊的展開方式——執行速度更快、自動化程度更高、更少…",
+      "source": "crowdstrike.com"
+    },
+    {
+      "title": "These 4 cybersecurity stocks are Wall Street’s favorite AI-proof plays - MarketWatch",
+      "title_zh": "這 4 檔網路安全股票是華爾街最喜歡的防人工智慧股票 - MarketWatch",
+      "url": "https://www.marketwatch.com/story/these-4-cybersecurity-stocks-are-wall-streets-favorite-ai-proof-plays-7f49f15d",
+      "summary": "Tech Stocks. # These 4 cybersecurity stocks are Wall Street’s favorite AI-proof plays. While the broader software sector stumbles, cybersecurity platforms are emerging as…",
+      "summary_zh": "科技股。 # 這 4 檔網路安全股票是華爾街最喜歡的防人工智慧股票。儘管更廣泛的軟體產業陷入困境，但網路安全平台正在興起…",
+      "source": "marketwatch.com"
+    },
+    {
+      "title": "MLQ.ai | AI for investors",
+      "title_zh": "MLQ.ai |投資者導向的人工智慧",
+      "url": "https://mlq.ai/research/cybersecurity-ai-era-what-crowdstrike-palo-alto-and-zscaler-are-telling-i/",
+      "summary": "CRWD reported record net new ARR of $330.7 million, up 47% year-over-year, partly driven by AI-specific launches including AIDR and Charlotte AI.1 PANW's Unit 42 threat…",
+      "summary_zh": "CRWD 報告稱，淨新 ARR 達到創紀錄的 3.307 億美元，同比增長 47%，部分原因是 AI 特定發布，包括 AIDR 和 Charlotte AI.1 PANW 的 Unit 42 威脅…",
+      "source": "mlq.ai"
+    },
+    {
+      "title": "CrowdStrike Named Google Cloud Security Partner of the Year for the Second Consecutive Year | FinancialContent",
+      "title_zh": "CrowdStrike 連續第二年被評為 Google 年度最佳雲端安全合作夥伴 |財經內容",
+      "url": "https://www.financialcontent.com/article/bizwire-2026-4-22-crowdstrike-named-google-cloud-security-partner-of-the-year-for-the-second-consecutive-year",
+      "summary": "CrowdStrike (NASDAQ: CRWD) today announced it has been named the 2026 Google Cloud Security Partner of the Year for Infrastructure Protection, marking the second consecutive year…",
+      "summary_zh": "CrowdStrike（納斯達克股票代碼：CRWD）今天宣布其被評為 2026 年度基礎設施保護谷歌雲端安全合作夥伴，這是連續第二年…",
+      "source": "financialcontent.com"
+    },
+    {
+      "title": "26-016 (April 21, 2026) - Threat Encyclopedia | Trend Micro (US",
+      "title_zh": "26-016（2026 年 4 月 21 日）- 威脅百科全書 |趨勢科技（美國",
+      "url": "https://www.trendmicro.com/vinfo/us/threat-encyclopedia/vulnerability/9205/26016-april-21-2026",
+      "summary": "The leader in Exposure Management – turning cyber risk visibility into decisive, proactive security. The most trusted cloud security platform for developers, security teams, and…",
+      "summary_zh": "暴露管理領域的領導者－將網路風險視覺性轉化為果斷、主動的安全措施。對於開發人員、安全團隊來說最值得信賴的雲端安全平台…",
+      "source": "trendmicro.com"
+    },
+    {
+      "title": "20th April – Threat Intelligence Report - Check Point Research",
+      "title_zh": "4 月 20 日 – 威脅情報報告 - Check Point Research",
+      "url": "https://research.checkpoint.com/2026/20th-april-threat-intelligence-report/",
+      "summary": "# 20th April – Threat Intelligence Report. For the latest discoveries in cyber research for the week of 20th April, please download our Threat Intelligence Bulletin. Leaked data…",
+      "summary_zh": "# 4 月 20 日 – 威脅情報報告。如需了解 4 月 20 日當週網路研究的最新發現，請下載我們的威脅情報公告。洩漏的資料",
+      "source": "research.checkpoint.com"
+    },
+    {
+      "title": "Splunk Enterprise Update Patches Code Execution Vulnerability - SecurityWeek",
+      "title_zh": "Splunk Enterprise 更新修補程式碼執行漏洞 - SecurityWeek",
+      "url": "https://www.securityweek.com/splunk-enterprise-update-patches-code-execution-vulnerability/",
+      "summary": "# Splunk Enterprise Update Patches Code Execution Vulnerability. Splunk has announced fixes for vulnerabilities in Splunk Enterprise, Cloud Platform, and MCP Server, as well as in…",
+      "summary_zh": "# Splunk Enterprise 更新修補程式碼執行漏洞。 Splunk 已宣布修復 Splunk Enterprise、雲端平台和 MCP 伺服器以及…中的漏洞",
+      "source": "securityweek.com"
+    },
+    {
+      "title": "2026 Cybersecurity Predictions - Palo Alto Networks",
+      "title_zh": "2026 年網路安全預測 - Palo Alto Networks",
+      "url": "https://www.paloaltonetworks.com/cybersecurity-perspectives/2026-cyber-predictions",
+      "summary": "# 6 Predictions for the AI Economy: 2026's New Rules of Cybersecurity. where the global economy transitions from \"AI-assisted\" to \"AI-native.” We won't just adopt new tools…",
+      "summary_zh": "#6 人工智慧經濟預測：2026 年網路安全新規則。全球經濟從「人工智慧輔助」轉向「人工智慧原生」。我們不僅會採用新工具",
+      "source": "paloaltonetworks.com"
+    }
+  ]
+}
