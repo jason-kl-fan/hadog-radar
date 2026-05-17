@@ -1,0 +1,86 @@
+{
+  "date": "2026-05-17",
+  "generatedAt": "2026-05-17T08:30:19.293180-07:00",
+  "items": [
+    {
+      "title": "5 Cybersecurity Companies Making Big AI Moves At RSAC 2026",
+      "title_zh": "5 家網路安全公司在 RSAC 2026 上採取重大人工智慧舉措",
+      "url": "https://www.crn.com/news/security/2026/5-cybersecurity-companies-making-big-ai-moves-at-rsac-2026",
+      "summary": "*Top executives from CrowdStrike, Palo Alto Networks, SentinelOne and other major vendors spoke with CRN about new AI-powered products launched at RSAC.*. This week at RSAC, *CRN*…",
+      "summary_zh": "*來自 CrowdStrike、Palo Alto Networks、SentinelOne 和其他主要供應商的高管與 CRN 討論了在 RSAC 上推出的新的人工智慧產品。 *。本週在 R​​SAC，*CRN*",
+      "source": "crn.com"
+    },
+    {
+      "title": "5 Cybersecurity Stocks That May Be Acquired in 2026's M&A Wave",
+      "title_zh": "2026 年併購浪潮中可能收購的 5 檔網路安全股票",
+      "url": "https://247wallst.com/investing/2026/05/12/5-cybersecurity-stocks-that-may-be-acquired-in-2026s-ma-wave/",
+      "summary": "# 5 Cybersecurity Stocks That May Be Acquired in 2026’s M&A Wave. * SentinelOne (S) and four other pure-play cybersecurity vendors are best positioned as 2026 acquisition…",
+      "summary_zh": "# 2026 年併購浪潮中可能收購的 5 隻網路安全股票。 * SentinelOne (S) 和其他四家純粹的網路安全供應商最適合 2026 年收購…",
+      "source": "247wallst.com"
+    },
+    {
+      "title": "Beyond the Perimeter 2026 with CrowdStrike, Okta and Zscaler | CrowdCast",
+      "title_zh": "借助 CrowdStrike、Okta 和 Zscaler 超越邊界 2026 |群播",
+      "url": "https://www.crowdstrike.com/en-us/resources/crowdcasts/okta-zscaler-beyond-the-perimeter-2026/",
+      "summary": "There's nothing in your cart. # Beyond the Perimeter 2026 with CrowdStrike, Okta and Zscaler. Integrated Security for the AI Era. AI is changing how attacks unfold — faster…",
+      "summary_zh": "你的購物車裡沒有任何東西。 # 與 CrowdStrike、Okta 和 Zscaler 一起超越邊界 2026。人工智慧時代的綜合安全。人工智慧正在改變攻擊的展開方式——更快…",
+      "source": "crowdstrike.com"
+    },
+    {
+      "title": "Vulnerabilities Patched in CrowdStrike, Tenable Products - SecurityWeek",
+      "title_zh": "CrowdStrike、Tenable 產品中的漏洞已修復 - SecurityWeek",
+      "url": "https://www.securityweek.com/vulnerabilities-patched-in-crowdstrike-tenable-products/",
+      "summary": "# Vulnerabilities Patched in CrowdStrike, Tenable Products. CrowdStrike has fixed a critical LogScale vulnerability, while Tenable addressed a high-severity Nessus flaw…",
+      "summary_zh": "# CrowdStrike、Tenable 產品中的漏洞已修復。 CrowdStrike 修復了一個嚴重的 LogScale 漏洞，而 Tenable 解決了一個高嚴重性的 Nessus 缺陷…",
+      "source": "securityweek.com"
+    },
+    {
+      "title": "Top 20 Cybersecurity Companies in 2026 You Need to Know About",
+      "title_zh": "2026 年您需要了解的 20 家網路安全公司",
+      "url": "https://edukov.com/top-20-cybersecurity-companies-in-2026-you-need-to-know-about/",
+      "summary": "In response, cybersecurity firms are stepping up their game, creating smarter and more robust solutions to safeguard networks, cloud environments, devices, applications, and user…",
+      "summary_zh": "作為回應，網路安全公司正在加緊努力，創建更智慧、更強大的解決方案來保護網路、雲端環境、設備、應用程式和用戶…",
+      "source": "edukov.com"
+    },
+    {
+      "title": "Top 45 Cybersecurity Companies You Need to Know in 2026",
+      "title_zh": "2026 年您需要了解的 45 家網路安全公司",
+      "url": "https://atlantsecurity.com/blog/top-cybersecurity-companies",
+      "summary": "Check Point is a pioneer in cybersecurity, offering solutions for network security, cloud protection, and mobile security. Cisco’s cybersecurity solutions cover everything from…",
+      "summary_zh": "Check Point 是網路安全領域的先驅，提供網路安全、雲端保護和行動安全解決方案。思科的網路安全解決方案涵蓋了…",
+      "source": "atlantsecurity.com"
+    },
+    {
+      "title": "5 Big Google Cloud Security And Wiz Announcements At Next 2026",
+      "title_zh": "2026 年 5 項重大 Google 雲端安全與 Wiz 公告",
+      "url": "https://www.crn.com/news/security/2026/5-big-google-cloud-security-and-wiz-announcements-at-next-2026",
+      "summary": "# 5 Big Google Cloud Security And Wiz Announcements At Next 2026. *The cloud giant announced three new AI-powered security agents along with expanded support and capabilities on…",
+      "summary_zh": "# 5 大 Google 雲端安全與 Wiz 公告將於 2026 年發布。 *這家雲端巨頭宣布了三個新的人工智慧驅動的安全代理，以及擴展的支援和功能",
+      "source": "crn.com"
+    },
+    {
+      "title": "CVE-2026-20172: Cisco Enterprise Chat and Email XSS Flaw",
+      "title_zh": "CVE-2026-20172：思科企業聊天與電子郵件 XSS 缺陷",
+      "url": "https://www.sentinelone.com/vulnerability-database/cve-2026-20172/",
+      "summary": "# CVE-2026-20172: Cisco Enterprise Chat and Email XSS Flaw. CVE-2026-20172 is a cross-site scripting vulnerability in Cisco Enterprise Chat and Email that allows authenticated…",
+      "summary_zh": "# CVE-2026-20172：思科企業聊天與電子郵件 XSS 缺陷。 CVE-2026-20172 是思科企業聊天和電子郵件中的跨站點腳本漏洞，允許經過身份驗證",
+      "source": "sentinelone.com"
+    },
+    {
+      "title": "9 AI Cybersecurity Trends to Watch in 2026 - SentinelOne",
+      "title_zh": "2026 年值得關注的 9 個人工智慧網路安全趨勢 - SentinelOne",
+      "url": "https://www.sentinelone.com/cybersecurity-101/data-and-ai/ai-cybersecurity-trends/",
+      "summary": "Background image for 9 AI Cybersecurity Trends to Watch in 2026. # 9 AI Cybersecurity Trends to Watch in 2026. Learn about the top AI cybersecurity trends to watch out for in…",
+      "summary_zh": "2026 年值得關注的 9 個人工智慧網路安全趨勢的背景圖片。 #2026 年值得關注的 9 個人工智慧網路安全趨勢。了解以下領域需要關注的頂級人工智慧網路安全趨勢…",
+      "source": "sentinelone.com"
+    },
+    {
+      "title": "2026 Global Threat Report | Latest Cybersecurity Trends & Insights",
+      "title_zh": "2026 年全球威脅報告 |最新網路安全趨勢與見解",
+      "url": "https://www.crowdstrike.com/en-us/global-threat-report/",
+      "summary": "# CrowdStrike 2026 Global Threat Report. 27 sec: the fastest recorded eCrime breakout time. 89% increase in attacks by AI-enabled adversaries. 82% of detections in 2025 were…",
+      "summary_zh": "# CrowdStrike 2026 年全球威脅報告。 27 秒：有記錄最快的電子犯罪突破時間。由人工智慧攻擊者發動的攻擊增加了 89%。 2025 年檢測到的 82% 是…",
+      "source": "crowdstrike.com"
+    }
+  ]
+}
