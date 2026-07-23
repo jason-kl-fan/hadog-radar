@@ -1,0 +1,86 @@
+{
+  "date": "2026-07-23",
+  "generatedAt": "2026-07-23T08:30:22.024842-07:00",
+  "items": [
+    {
+      "title": "Cybersecurity Consolidation: CrowdStrike, Wiz-Google, Palo Alto 2026 | VaaSBlock",
+      "title_zh": "網路安全整合：CrowdStrike、Wiz-Google、帕洛阿爾托 2026 | VaaS區塊",
+      "url": "https://www.vaasblock.com/news/cybersecurity-vendor-consolidation-crowdstrike-wiz-palo-alto-2026",
+      "summary": "For investors evaluating cybersecurity equity exposure: the consolidation dynamic favors the platform leaders (Palo Alto, CrowdStrike, Microsoft’s security business within the…",
+      "summary_zh": "對於評估網路安全股權風險的投資者：整合動態有利於平台領導者（Palo Alto、CrowdStrike、微軟在…內的安全業務）",
+      "source": "vaasblock.com"
+    },
+    {
+      "title": "Wiz is a multicloud security rocket ship. Now it works for a cloud provider",
+      "title_zh": "Wiz 是一艘多雲安全火箭。現在它適用於雲端提供者",
+      "url": "https://www.runtime.news/wiz-is-a-multicloud-security-rocket-ship-now-it-works-for-a-cloud-provider",
+      "summary": "\"Given the regulatory uncertainty around this acquisition, customers running workloads primarily on Azure or AWS should ensure they have clear contingency strategies to safeguard…",
+      "summary_zh": "「考慮到此次收購的監管不確定性，主要在 Azure 或 AWS 上運行工作負載的客戶應確保他們有明確的緊急策略來保護…",
+      "source": "runtime.news"
+    },
+    {
+      "title": "U.S. Public Sector Under Siege: Threat Intelligence for Q1",
+      "title_zh": "美國公共部門陷入困境：第一季威脅情報",
+      "url": "https://www.trendmicro.com/en_us/research/26/d/us-public-sector-under-siege.html",
+      "summary": "Key insight: Government agencies operating unpatched Fortinet, Cisco, or VMware infrastructure are at immediate, verified risk in Q1 2026. The continued exploitation of…",
+      "summary_zh": "關鍵見解：營運未修補的 Fortinet、思科或 VMware 基礎設施的政府機構將在 2026 年第一季立即面臨經證實的風險。持續利用…",
+      "source": "trendmicro.com"
+    },
+    {
+      "title": "Wiz vs. CrowdStrike: 2026 Cloud security comparison | Wiz",
+      "title_zh": "Wiz 與 CrowdStrike：2026 年雲端安全比較 |維茲",
+      "url": "https://www.wiz.io/academy/cloud-security/wiz-vs-crowdstrike",
+      "summary": "CrowdStrike is a well-established cybersecurity vendor best known for its endpoint detection and response (EDR) and workload protection capabilities. In recent years, CrowdStrike…",
+      "summary_zh": "CrowdStrike 是一家成熟的網路安全供應商，以其端點偵測和回應 (EDR) 以及工作負載保護功能而聞名。近年來，CrowdStrike",
+      "source": "wiz.io"
+    },
+    {
+      "title": "Google Cloud closes Wiz acquisition, begins platform player brawl - SDxCentral",
+      "title_zh": "谷歌雲端完成對 Wiz 的收購，平台玩家之間的爭鬥開始了 - SDxCentral",
+      "url": "https://www.sdxcentral.com/news/google-cloud-closes-wiz-acquisition-begins-platform-player-brawl",
+      "summary": "The analyst suggested this month’s RSA Conference 2026 may offer “one last glimpse of whatever playful campaign” the vendor has queued up before potentially moving to the uniform…",
+      "summary_zh": "這位分析師表示，本月的 RSA Conference 2026 可能會提供「最後一睹供應商在可能轉向制服之前排隊的任何有趣活動的最後機會」…",
+      "source": "sdxcentral.com"
+    },
+    {
+      "title": "Introducing the 2026 Cloudflare Threat Report",
+      "title_zh": "2026 年 Cloudflare 威脅報告簡介",
+      "url": "https://blog.cloudflare.com/2026-threat-report",
+      "summary": "In 2026, the modern adversary is trading the pursuit of \"sophistication\" (complex, expensive, one-off hacks) in favor of throughput. MOE is the metric attackers use to decide what…",
+      "summary_zh": "2026 年，現代對手正在放棄對「複雜性」（複雜、昂貴、一次性駭客攻擊）的追求，轉而追求吞吐量。 MOE 是攻擊者用來決定什麼的指標…",
+      "source": "blog.cloudflare.com"
+    },
+    {
+      "title": "Top 11 Cyber Security Threats in 2026",
+      "title_zh": "2026 年十大網路安全威脅",
+      "url": "https://www.sentinelone.com/cybersecurity-101/cybersecurity/cyber-security-threats",
+      "summary": "Top Cyber Security Threats in 2026 In 2026, the cybersecurity landscape continues to evolve with emerging threats and sophisticated attack methods. Key threats include: # 1…",
+      "summary_zh": "2026 年的主要網路安全威脅 2026 年，網路安全格局將隨著新威脅和複雜攻擊方法的不斷發展而不斷發展。主要威脅包括：#1…",
+      "source": "sentinelone.com"
+    },
+    {
+      "title": "CrowdStrike 2026 Global Threat Report | Key Cyber Threat Trends",
+      "title_zh": "CrowdStrike 2026 年全球威脅報告 |主要網路威脅趨勢",
+      "url": "https://www.crowdstrike.com/en-us/global-threat-report",
+      "summary": "As adversaries move faster than ever, the window for detection and response continues to shrink, demanding real-time visibility and automated response capabilities. Punk Spider 27…",
+      "summary_zh": "隨著對手的行動速度比以往任何時候都快，偵測和回應的視窗不斷縮小，需要即時可見性和自動回應能力。朋克蜘蛛27…",
+      "source": "crowdstrike.com"
+    },
+    {
+      "title": "Next '26: Redefining security for the AI era with Google Cloud and Wiz",
+      "title_zh": "Next '26：利用 Google Cloud 和 Wiz 重新定義 AI 時代的安全性",
+      "url": "https://cloud.google.com/blog/products/identity-security/next26-redefining-security-for-the-ai-era-with-google-cloud-and-wiz",
+      "summary": "The latest research from Google Cloud shows that adversaries are using AI to accelerate the speed, scale, and sophistication of attacks. Meanwhile, M-Trends 2026 also showed that…",
+      "summary_zh": "The latest research from Google Cloud shows that adversaries are using AI to accelerate the speed, scale, and sophistication of attacks.與此同時，M-Trends 2026 也表明…",
+      "source": "cloud.google.com"
+    },
+    {
+      "title": "Palo Alto Networks, Google Cloud Strike Multibillion-Dollar AI and Cloud Security Deal - SecurityWeek",
+      "title_zh": "Palo Alto Networks 與 Google Cloud 達成數十億美元的人工智慧和雲端安全交易 - SecurityWeek",
+      "url": "https://www.securityweek.com/palo-alto-networks-google-cloud-strike-multibillion-dollar-ai-and-cloud-security-deal",
+      "summary": "Register Virtual Event: 2026 Cloud Security Summit July 15, 2026 This year's summit will help organizations learn how to utilize tools, controls, and design models needed to…",
+      "summary_zh": "註冊虛擬活動：2026 年雲端安全高峰會 2026 年 7 月 15 日 今年的峰會將幫助組織學習如何利用…所需的工具、控制和設計模型",
+      "source": "securityweek.com"
+    }
+  ]
+}
