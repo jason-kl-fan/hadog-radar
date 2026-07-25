@@ -1,0 +1,86 @@
+{
+  "date": "2026-07-25",
+  "generatedAt": "2026-07-25T08:30:16.311002-07:00",
+  "items": [
+    {
+      "title": "Cybersecurity Consolidation 2026: CrowdStrike, Wiz | VaaSBlock",
+      "title_zh": "2026 網路安全整合：CrowdStrike、Wiz | VaaS區塊",
+      "url": "https://www.vaasblock.com/news/cybersecurity-vendor-consolidation-crowdstrike-wiz-palo-alto-2026",
+      "summary": "The combination of enterprise security buyer fatigue with managing dozens of point solutions, the inherent advantages of integrated security platforms for AI-driven threat…",
+      "summary_zh": "企業安全買家的疲勞與管理數十種單點解決方案相結合，針對人工智慧驅動的威脅的整合安全平台的固有優勢",
+      "source": "vaasblock.com"
+    },
+    {
+      "title": "Wiz vs. CrowdStrike: 2026 Cloud security comparison | Wiz",
+      "title_zh": "Wiz 與 CrowdStrike：2026 年雲端安全比較 |維茲",
+      "url": "https://www.wiz.io/academy/cloud-security/wiz-vs-crowdstrike",
+      "summary": "Wiz and CrowdStrike are both established leaders in enterprise security, each approaching cloud protection from a different foundation – Wiz from a cloud-native perspective and…",
+      "summary_zh": "Wiz 和 CrowdStrike 都是企業安全領域的知名領導者，各自從不同的基礎出發進行雲端保護 – Wiz 從雲端原生的角度出發，並且…",
+      "source": "wiz.io"
+    },
+    {
+      "title": "Google Cloud Next 2026: Security Announcements Recap · William OGOU Cybersecurity Blog",
+      "title_zh": "Google Cloud Next 2026：安全公告回顧 · William OGOU 網路安全博客",
+      "url": "https://blog.ogwilliam.com/post/google-cloud-next-2026-security-recap",
+      "summary": "# Google Cloud Next 2026: Security Announcements Recap. img of Google Cloud Next 2026: Security Announcements Recap. Google Cloud Next ‘26 put security at the center of the…",
+      "summary_zh": "# Google Cloud Next 2026：安全公告回顧。 Google Cloud Next 2026 的 img：安全公告回顧。 Google Cloud Next ‘26 將安全性置於...的中心",
+      "source": "blog.ogwilliam.com"
+    },
+    {
+      "title": "5 Big Google Cloud Security And Wiz Announcements At Next 2026",
+      "title_zh": "2026 年 5 項重大 Google 雲端安全與 Wiz 公告",
+      "url": "https://www.crn.com/news/security/2026/5-big-google-cloud-security-and-wiz-announcements-at-next-2026",
+      "summary": "# 5 Big Google Cloud Security And Wiz Announcements At Next 2026. *The cloud giant announced three new AI-powered security agents along with expanded support and capabilities on…",
+      "summary_zh": "# 5 大 Google 雲端安全與 Wiz 公告將於 2026 年發布。 *這家雲端巨頭宣布了三個新的人工智慧驅動的安全代理，以及擴展的支援和功能",
+      "source": "crn.com"
+    },
+    {
+      "title": "CISA: Splunk Enterprise flaw actively exploited, patch by Sunday",
+      "title_zh": "CISA：Splunk Enterprise 漏洞被積極利用，將於週日修補",
+      "url": "https://www.bleepingcomputer.com/news/security/cisa-splunk-enterprise-flaw-actively-exploited-patch-by-sunday/amp",
+      "summary": "# CISA: Splunk Enterprise flaw actively exploited, patch by Sunday. The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has urged federal agencies to secure their…",
+      "summary_zh": "# CISA：Splunk Enterprise 缺陷被積極利用，將於週日修補。美國網路安全和基礎設施安全局 (CISA) 敦促聯邦機構確保其…",
+      "source": "bleepingcomputer.com"
+    },
+    {
+      "title": "Splunk Enterprise Vulnerability Exploited in Attacks Days After Disclosure - SecurityWeek",
+      "title_zh": "Splunk Enterprise 漏洞在披露幾天後就遭到攻擊 - SecurityWeek",
+      "url": "https://www.securityweek.com/splunk-enterprise-vulnerability-exploited-in-attacks-days-after-disclosure/amp",
+      "summary": "# Splunk Enterprise Vulnerability Exploited in Attacks Days After Disclosure. CISA has given federal agencies only three days to patch CVE-2026-20253, which can be exploited for…",
+      "summary_zh": "# Splunk Enterprise 漏洞在披露幾天後就遭到攻擊。 CISA 只給聯邦機構三天的時間來修補 CVE-2026-20253，該漏洞可用於…",
+      "source": "securityweek.com"
+    },
+    {
+      "title": "Palo Alto Networks, Google Cloud Strike Multibillion-Dollar AI and Cloud Security Deal - SecurityWeek",
+      "title_zh": "Palo Alto Networks 與 Google Cloud 達成數十億美元的人工智慧和雲端安全交易 - SecurityWeek",
+      "url": "https://www.securityweek.com/palo-alto-networks-google-cloud-strike-multibillion-dollar-ai-and-cloud-security-deal/amp",
+      "summary": "# Palo Alto Networks, Google Cloud Strike Multibillion-Dollar AI and Cloud Security Deal. The agreement strengthens technical and commercial ties as Palo Alto migrates workloads…",
+      "summary_zh": "# Palo Alto Networks、Google Cloud 達成數十億美元的人工智慧和雲端安全協議。隨著帕洛阿爾托遷移工作負載，該協議加強了技術和商業聯繫…",
+      "source": "securityweek.com"
+    },
+    {
+      "title": "Next '26: Redefining security for the AI era with",
+      "title_zh": "Next '26：重新定義人工智慧時代的安全",
+      "url": "https://cloud.google.com/blog/products/identity-security/next26-redefining-security-for-the-ai-era-with-google-cloud-and-wiz",
+      "summary": "# Next ‘26: Redefining security for the AI era with Google Cloud and Wiz. Organizations are facing the dual challenge of harnessing the potential of AI while defending against its…",
+      "summary_zh": "# Next ‘26：利用 Google Cloud 和 Wiz 重新定義 AI 時代的安全性。組織面臨雙重挑戰：利用人工智慧的潛力，同時防禦其…",
+      "source": "cloud.google.com"
+    },
+    {
+      "title": "OpenAI | Research & Deployment",
+      "title_zh": "開放人工智慧 |研究與部署",
+      "url": "https://openai.com",
+      "summary": "Image 7: David Vélez and Robin Vince 1x1 David Vélez and Robin Vince join OpenAI boards Company Jul 21, 2026 Image 8: GPT-Red art card GPT-Red: Unlocking Self-Improvement for…",
+      "summary_zh": "圖 7：David Vélez 和 Robin Vince 1x1 David Vélez 和 Robin Vince 於 2026 年 7 月 21 日加入 OpenAI 董事會公司 圖 8：GPT-Red 藝術卡 GPT-Red：解鎖自我完善…",
+      "source": "openai.com"
+    },
+    {
+      "title": "Google Cloud closes Wiz acquisition, begins platform player brawl - SDxCentral",
+      "title_zh": "谷歌雲端完成對 Wiz 的收購，平台玩家之間的爭鬥開始了 - SDxCentral",
+      "url": "https://www.sdxcentral.com/news/google-cloud-closes-wiz-acquisition-begins-platform-player-brawl",
+      "summary": "The day is finally here: Google Cloud completed its big-bucks acquisition of cloud security vendor Wiz, possibly putting the hyperscaler head-to-head with platform vendors in the…",
+      "summary_zh": "這一天終於來了：Google雲端完成了對雲端安全供應商 Wiz 的巨額收購，這可能會讓超大規模供應商與平台供應商正面交鋒…",
+      "source": "sdxcentral.com"
+    }
+  ]
+}
